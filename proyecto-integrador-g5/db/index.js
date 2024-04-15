@@ -5,7 +5,7 @@ var datos = {
         contrasenia: "jajajaaj",
         fecha_nac: "2004-07-03",
         dni: "43264845",
-        fotoPerfil: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fpngtree.com%2Fso%2Fprofile-icon&psig=AOvVaw27q4OF-eIY39WmEdTY2_cb&ust=1712694291658000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCJDn1ci5s4UDFQAAAAAdAAAAABAJ"
+        fotoPerfil: "/images/users/fotoPerfil.jpg"
     },
     productos: [ // array de 10 productos (son objetos literales: propiedades son: imagen, nombre, descripcion, comentarios)
         {
@@ -16,17 +16,17 @@ var datos = {
                 {
                     usuario: "Julieta Gardey",
                     texto: "Muy bueno",
-                    imagenPerfil: "link"
+                    imagenPerfil: "/images/users/fotoPerfil.jpg"
                 },
                 {
                     usuario: "Mora Noguer",
                     texto: "Me llego roto",
-                    imagenPerfil: "link"
+                    imagenPerfil: "/images/users/fotoPerfil.jpg"
                 },
                 {
                     usuario: "Margarita Ziraldo",
                     texto: "Re lindooooo",
-                    imagenPerfil: "link"
+                    imagenPerfil: "/images/users/fotoPerfil.jpg"
                 }
             ]
         },
@@ -38,17 +38,17 @@ var datos = {
                 {
                     usuario: "Juan Diaz",
                     texto: "Era otro color",
-                    imagenPerfil: "link"
+                    imagenPerfil: "/images/users/fotoPerfil.jpg"
                 },
                 {
                     usuario: "Carla Maria",
                     texto: "Justo lo que necesitaba",
-                    imagenPerfil: "link"
+                    imagenPerfil: "/images/users/fotoPerfil.jpg"
                 },
                 {
                     usuario: "Julieta Gardey",
                     texto: "Exelente serviciooo",
-                    imagenPerfil: "link"
+                    imagenPerfil: "/images/users/fotoPerfil.jpg"
                 }
             ]
         },
@@ -60,17 +60,17 @@ var datos = {
                 {
                     usuario: "Mora Noguer",
                     texto: "No funciona",
-                    imagenPerfil: "link"
+                    imagenPerfil: "/images/users/fotoPerfil.jpg"
                 },
                 {
                     usuario: "Margarita Ziraldo",
                     texto: "Muy copadoo",
-                    imagenPerfil: "link"
+                    imagenPerfil: "/images/users/fotoPerfil.jpg"
                 },
                 {
                     usuario: "Juan Diaz",
                     texto: "Me llego muy rapido",
-                    imagenPerfil: "link"
+                    imagenPerfil: "/images/users/fotoPerfil.jpg"
                 }
             ]
         },
@@ -82,17 +82,17 @@ var datos = {
                 {
                     usuario: "Carla Maria",
                     texto: "Que eficiente",
-                    imagenPerfil: "link"
+                    imagenPerfil: "/images/users/fotoPerfil.jpg"
                 },
                 {
                     usuario: "Julieta Gardey",
                     texto: "Buena calidad",
-                    imagenPerfil: "link"
+                    imagenPerfil: "/images/users/fotoPerfil.jpg"
                 },
                 {
                     usuario: "Mora Noguer",
                     texto: "Vendedor muy atento",
-                    imagenPerfil: "link"
+                    imagenPerfil: "/images/users/fotoPerfil.jpg"
                 }
             ]
         },
@@ -104,17 +104,17 @@ var datos = {
                 {
                     usuario: "Margarita Ziraldo",
                     texto: "Espectacular",
-                    imagenPerfil: "link"
+                    imagenPerfil: "/images/users/fotoPerfil.jpg"
                 },
                 {
                     usuario: "Juan Diaz",
                     texto: "Que rico sale todo",
-                    imagenPerfil: "link"
+                    imagenPerfil: "/images/users/fotoPerfil.jpg"
                 },
                 {
                     usuario: "Carla Maria",
                     texto: "Hermoso todo",
-                    imagenPerfil: "link"
+                    imagenPerfil: "/images/users/fotoPerfil.jpg"
                 }
             ]
         },
@@ -126,17 +126,17 @@ var datos = {
                 {
                     usuario: "Julieta Gardey",
                     texto: "Productazoooo",
-                    imagenPerfil: "link"
+                    imagenPerfil: "/images/users/fotoPerfil.jpg"
                 },
                 {
                     usuario: "Mora Noguer",
                     texto: "Alto color",
-                    imagenPerfil: "link"
+                    imagenPerfil: "/images/users/fotoPerfil.jpg"
                 },
                 {
                     usuario: "Margarita Ziraldo",
                     texto: "Recomiendo",
-                    imagenPerfil: "link"
+                    imagenPerfil: "/images/users/fotoPerfil.jpg"
                 }
             ]
         },
@@ -148,17 +148,17 @@ var datos = {
                 {
                     usuario: "Juan Diaz",
                     texto: "No recomiendo",
-                    imagenPerfil: "link"
+                    imagenPerfil: "/images/users/fotoPerfil.jpg"
                 },
                 {
                     usuario: "Carla Maria",
                     texto: "No funciona para nada bien",
-                    imagenPerfil: "link"
+                    imagenPerfil: "/images/users/fotoPerfil.jpg"
                 },
                 {
                     usuario: "Julieta Gardey",
                     texto: "No es lo que parece",
-                    imagenPerfil: "link"
+                    imagenPerfil: "/images/users/fotoPerfil.jpg"
                 }
             ]
         },
@@ -170,17 +170,17 @@ var datos = {
                 {
                     usuario: "Mora Noguer",
                     texto: "Copado materiales buenos",
-                    imagenPerfil: "link"
+                    imagenPerfil: "/images/users/fotoPerfil.jpg"
                 },
                 {
                     usuario: "Margarita Ziraldo",
                     texto: "Mala calidad",
-                    imagenPerfil: "link"
+                    imagenPerfil: "/images/users/fotoPerfil.jpg"
                 },
                 {
                     usuario: "Juan Diaz",
                     texto: "Malisimooo",
-                    imagenPerfil: "link"
+                    imagenPerfil: "/images/users/fotoPerfil.jpg"
                 }
             ]
         },
@@ -192,17 +192,17 @@ var datos = {
                 {
                     usuario: "Carla Maria",
                     texto: "No lo comprennn",
-                    imagenPerfil: "link"
+                    imagenPerfil: "/images/users/fotoPerfil.jpg"
                 },
                 {
                     usuario: "Julieta Gardey",
                     texto: "muy tremendo",
-                    imagenPerfil: "link"
+                    imagenPerfil: "/images/users/fotoPerfil.jpg"
                 },
                 {
                     usuario: "Mora Noguer",
                     texto: "Lindooo",
-                    imagenPerfil: "link"
+                    imagenPerfil: "/images/users/fotoPerfil.jpg"
                 }
             ]
         },
@@ -214,17 +214,17 @@ var datos = {
                 {
                     usuario: "Margarita Ziraldo",
                     texto: "Feoo",
-                    imagenPerfil: "link"
+                    imagenPerfil: "/images/users/fotoPerfil.jpg"
                 },
                 {
                     usuario: "Juan Diaz",
                     texto: "No pedi este talle",
-                    imagenPerfil: "link"
+                    imagenPerfil: "/images/users/fotoPerfil.jpg"
                 },
                 {
                     usuario: "Carla Maria",
                     texto: "Todo perfecto",
-                    imagenPerfil: "link"
+                    imagenPerfil: "/images/users/fotoPerfil.jpg"
                 }
             ]
         }
