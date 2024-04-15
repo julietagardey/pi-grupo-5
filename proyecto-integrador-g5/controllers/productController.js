@@ -3,7 +3,7 @@ const datos = require("../db/index")
 // index, add (es cuando toco el botón editar)
 
 const productController = {
-    index: function (req, res) {
+    detail: function (req, res) {
         var productos = datos.productos
         return res.render("product", { productos: productos })
     },
