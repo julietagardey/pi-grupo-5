@@ -16,11 +16,38 @@
 				<h2 class="products-title">Editar mi perfil</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-			<h2 class="col-12"> <i>///////////////////////////////////////// <br> Acá va el formulario de edición de datos del perfil de usuario. <br>
-			Debe cumplir con los puntos de la consigna y ser coherente con la tabla de la base de datos deñ usuario<br>
-			Eliminen estás líneas y coloquen el formulario. <br>
-			Recuerden todo lo que necesita tanto la etiqueta form como los campos input para operar correctamtente</i> <br>
-			////////////////
+			<h2 class="col-12">
+				<br> 
+				<form action="profile.ejs" method="get">
+					<div>
+						<label>Email:</label>
+				<input id="email" type="email" name="email" value="">
+				</div>
+					<div>
+						<label>Usuario:</label>
+				<input id="usuario" type="text" name="Usuario" value="">
+				</div>
+					<div>
+						<label>Contraseña:</label>
+				<input id="contraseña" type="password" name="contraseña" value="">
+				</div>
+					<div>
+						<label>Fecha de nacimiento:</label>
+				<input id="fechaDeNacimiento" type="date" name="fechaDeNacimiento" value="">
+				</div>
+					<div>
+						<label>Número de documento:</label>
+				<input id="numeroDeDocumento" type="number" name="numeroDeDocumento" value="">
+				</div>
+					<div>
+						<label>Foto de Perfil:</label>
+				<input id="fotoPerfil" type="text" name="fotoPerfil" value="">
+				</div>
+					<div>
+						<button type="submit">Editar</button> 
+				</div>
+				</form>
+			<br>
 			</h2>
 
 
