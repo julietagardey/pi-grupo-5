@@ -1,46 +1,46 @@
 <!DOCTYPE html>
 <html lang="es">
 <!-- Include Head -->
-    <%- include("partials/head.ejs") %>
+<%- include("partials/head.ejs") %>
 
-<body>
-	<!-- Header -->
-    <%- include("partials/header-logoff.ejs") %>
-	<!-- /Header -->
+	<body>
+		<!-- Header -->
+		<%- include("partials/header-logoff.ejs") %>
+			<!-- /Header -->
 
-	<!-- Novedades -->
-	<div class="container products-wrapper">
-		<div class="row">
-			<div class="col-12">
-				<h2 class="products-title">Ingresar</h2>
-			</div>
-			<!-- Show the "ultimos" products -->
-			<h2 class="col-12"> 
-				<br> 
-				<form action="/users/profile" method="get">
-					<div>
-						<label>Email:</label>
-				<input id="email" type="email" name="email" value="">
-				</div>
-					<div>
-						<label>Contraseña:</label>
-				<input id="contraseña" type="password" name="contraseña" value="">
-				</div>
-					<div>
-						<label>Recordarme</label>
-				<input id="recordarme" type="checkbox" name="recordarme" value="">
+			<!-- Novedades -->
+			<div class="container products-wrapper">
+				<div class="row">
+					<div class="col-12">
+						<h2 class="products-title">Ingresar</h2>
 					</div>
-					<div>
-						<button type="submit">LogIn</button> 
-				</div>
-				</form>
-				<br>
-			</h2>
+					<!-- Show the "ultimos" products -->
+					<h2 class="col-12">
+						<br>
+						<form action="/users/profile" method="get">
+							<div>
+								<label>Email:</label>
+								<input id="email" type="email" name="email" value="">
+							</div>
+							<div>
+								<label>Contraseña:</label>
+								<input id="contraseña" type="password" name="contraseña" value="">
+							</div>
+							<div>
+								<label>Recordarme</label>
+								<input id="recordarme" type="checkbox" name="recordarme" value="">
+							</div>
+							<div>
+								<button type="submit">LogIn</button>
+							</div>
+						</form>
+						<br>
+					</h2>
 
 
-	<!-- footer -->
-    <%- include("partials/footer.ejs") %>
-	<!-- /footer -->
-</body>
+					<!-- footer -->
+					<%- include("partials/footer.ejs") %>
+						<!-- /footer -->
+	</body>
 
 </html>

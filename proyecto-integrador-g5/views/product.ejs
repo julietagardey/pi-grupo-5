@@ -3,56 +3,63 @@
 <!-- Include Head -->
 <%- include("partials/head.ejs") %>
 
-<body>
-	<!-- Header -->
-    <%- include("partials/header-logoff.ejs") %>
-	<!-- /Header -->
+	<body>
+		<!-- Header -->
+		<%- include("partials/header-logoff.ejs") %>
+			<!-- /Header -->
 
-	<!-- product detail -->
-	<div class="container products-wrapper">
-		<div class="d-flex align-items-center">
-			<h2 class="products-title"> <%= productos[0].nombre %> </h2> 
-			<p class="product-detail-description">
-				<a href="/products/add">Editar</a>
-			</p>
-		</div>
-		<div class="product-detail">
-			<div class="row">
-				<article class="col-12 col-lg-8 product-detail-info">
-					<img src=" <%= productos[0].imagen %>" alt="" class="product-detail-img">
+			<!-- product detail -->
+			<div class="container products-wrapper">
+				<div class="d-flex align-items-center">
+					<h2 class="products-title">
+						<%= productos[0].nombre %>
+					</h2>
 					<p class="product-detail-description">
-						<%= productos[0].descripcion %> </p>
-				</article>
-				<div class="col-12 col-lg-4">
-					<section class="comments">
+						<a href="/products/add">Editar</a>
+					</p>
+				</div>
+				<div class="product-detail">
+					<div class="row">
+						<article class="col-12 col-lg-8 product-detail-info">
+							<img src=" <%= productos[0].imagen %>" alt="" class="product-detail-img">
+							<p class="product-detail-description">
+								<%= productos[0].descripcion %>
+							</p>
+						</article>
+						<div class="col-12 col-lg-4">
+							<section class="comments">
 
-						<% for( let i = 0; i < 3; i++ ) { %>
-							<article>
-								<img src="/images/users/fotoPerfil.jpg" alt="" class="foto-perfil">
-								<div class="data">
-									<p class="user">
-										<strong> <a href="/users/profile">  <%= productos[0].comentarios[i].usuario %> </a> </strong>
-										<%= productos[0].comentarios[i].texto %></p>
-								</div>
-							</article>
-							<% } %>
-						
+								<% for( let i=0; i < 3; i++ ) { %>
+									<article>
+										<img src="/images/users/fotoPerfil.jpg" alt="" class="foto-perfil">
+										<div class="data">
+											<p class="user">
+												<strong> <a href="/users/profile">
+														<%= productos[0].comentarios[i].usuario %>
+													</a> </strong>
+												<%= productos[0].comentarios[i].texto %>
+											</p>
+										</div>
+									</article>
+									<% } %>
 
-					</section>
-					<!--<form class="form" action="" method="POST">
+
+							</section>
+							<!--<form class="form" action="" method="POST">
 						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
 						<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
 					</form>  -->
-					<hr>
+							<hr>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-	<!-- /product detail-->
+			<!-- /product detail-->
 
-	<!-- footer -->
-    <%- include("partials/footer.ejs") %>
-	<!-- /footer -->
+			<!-- footer -->
+			<%- include("partials/footer.ejs") %>
+				<!-- /footer -->
 
-</body>	
+	</body>
+
 </html>

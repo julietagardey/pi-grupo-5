@@ -9,7 +9,7 @@ const userController = {
         return res.render("register")
     },
     profile: function (req, res) {
-        return res.render("profile" ,{usuario: datos.usuario, productos: datos.productos})
+        return res.render("profile", { usuario: datos.usuario, productos: datos.productos })
     },
     editProfile: function (req, res) {
         return res.render("profile-edit")

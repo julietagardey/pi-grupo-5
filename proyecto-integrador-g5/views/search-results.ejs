@@ -3,52 +3,52 @@
 <!-- Include Head -->
 <%- include("partials/head.ejs") %>
 
-<body>
-	<!-- Header -->
-    <%- include("partials/header-logoff.ejs") %>
-	<!-- /Header -->
+	<body>
+		<!-- Header -->
+		<%- include("partials/header-logoff.ejs") %>
+			<!-- /Header -->
 
-	<!-- Novedades -->
-	<div class="container products-wrapper">
-		<div class="row">
-			<!-- <div class="col-12">
-				<h2 class="products-title">Resultados de búsqueda</h2>
-			</div> -->
-			<!-- Show the "ultimos" products -->
-			
+			<!-- Novedades -->
 			<div class="container products-wrapper">
 				<div class="row">
-					<div class="col-12">
-						<h2 class="products-title">Resultados de búsqueda:</h2>
-					</div>
-					<!-- Show mis productos -->
-					<% for( let index=0; index < 8; index++ ) { %>
-						<div class="col-12 col-sm-6 col-lg-3">
-							<section class="product-box">
-								<a href="/products/detail">
-									<figure class="product-box_image">
-										<img src="<%= productos[index].imagen %>" alt="horno">
-									</figure>
-									<article class="product-box_data">
-										<h2>
-											<%= productos[index].nombre %>
-										</h2>
-										<p>
-											<%= productos[index].descripcion %>
-										</p>
-										<p>Comentarios: 3</p>
-									</article>
-								</a>
-							</section>
+					<!-- <div class="col-12">
+				<h2 class="products-title">Resultados de búsqueda</h2>
+			</div> -->
+					<!-- Show the "ultimos" products -->
+
+					<div class="container products-wrapper">
+						<div class="row">
+							<div class="col-12">
+								<h2 class="products-title">Resultados de búsqueda:</h2>
+							</div>
+							<!-- Show mis productos -->
+							<% for( let index=0; index < 8; index++ ) { %>
+								<div class="col-12 col-sm-6 col-lg-3">
+									<section class="product-box">
+										<a href="/products/detail">
+											<figure class="product-box_image">
+												<img src="<%= productos[index].imagen %>" alt="horno">
+											</figure>
+											<article class="product-box_data">
+												<h2>
+													<%= productos[index].nombre %>
+												</h2>
+												<p>
+													<%= productos[index].descripcion %>
+												</p>
+												<p>Comentarios: 3</p>
+											</article>
+										</a>
+									</section>
+								</div>
+								<% } %>
 						</div>
-					<% } %>							
-				</div>
-			</div>
+					</div>
 
 
-	<!-- footer -->
-    <%- include("partials/footer.ejs") %>
-	<!-- /footer -->
-</body>
+					<!-- footer -->
+					<%- include("partials/footer.ejs") %>
+						<!-- /footer -->
+	</body>
 
 </html>

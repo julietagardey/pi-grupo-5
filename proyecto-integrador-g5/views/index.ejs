@@ -2,74 +2,84 @@
 <html lang="es">
 <!-- Include Head -->
 <%- include("partials/head.ejs") %>
-<body>
-	<!-- Header -->
-  <%- include("partials/header-logoff.ejs") %>
-	<!-- /Header -->
-	
-	<!-- Banner -->
-	<div class="banner">
-		<img src="images/banner2.webp" alt="Banner de ofertas" class="banner">
-	</div>
-	<!-- /Banner -->
 
-	<!-- Novedades -->
-	<div class="container products-wrapper">
-		<div class="row">
-			<div class="col-12">
-				<h2 class="products-title">Novedades</h2>
+	<body>
+		<!-- Header -->
+		<%- include("partials/header-logoff.ejs") %>
+			<!-- /Header -->
+
+			<!-- Banner -->
+			<div class="banner">
+				<img src="images/banner2.webp" alt="Banner de ofertas" class="banner">
 			</div>
-			<!-- Show the "ultimos" products -->
-			<% for( let index = 0; index < 4; index++ ) { %>
-				<div class="col-12 col-sm-6 col-lg-3">
-					<section class="product-box">
-						<a href="/products/detail">
-							<figure class="product-box_image">
-								<img src="<%= productos[index].imagen %>" alt="horno">
-							</figure>
-							<article class="product-box_data">
-								<h2> <%= productos[index].nombre %> </h2>
-								<p> <%= productos[index].descripcion %></p>
-								<p>Comentarios: 3</p>
-							</article>
-						</a>
-					</section>
+			<!-- /Banner -->
+
+			<!-- Novedades -->
+			<div class="container products-wrapper">
+				<div class="row">
+					<div class="col-12">
+						<h2 class="products-title">Novedades</h2>
+					</div>
+					<!-- Show the "ultimos" products -->
+					<% for( let index=0; index < 4; index++ ) { %>
+						<div class="col-12 col-sm-6 col-lg-3">
+							<section class="product-box">
+								<a href="/products/detail">
+									<figure class="product-box_image">
+										<img src="<%= productos[index].imagen %>" alt="horno">
+									</figure>
+									<article class="product-box_data">
+										<h2>
+											<%= productos[index].nombre %>
+										</h2>
+										<p>
+											<%= productos[index].descripcion %>
+										</p>
+										<p>Comentarios: 3</p>
+									</article>
+								</a>
+							</section>
+						</div>
+						<% } %>
 				</div>
-			<% } %>
-		</div>
-	</div>
-	<!-- /Novedades -->
-	<!-- Más comentados -->
-	<div class="container products-wrapper">
-		<div class="row">
-			<div class="col-12">
-				<h2 class="products-title">Más comentados</h2>
 			</div>
-			<!-- Show the "ultimos" products -->
-			<% for( let index = 5; index < 9; index++ ) { %>
-				<div class="col-12 col-sm-6 col-lg-3">
-					<section class="product-box">
-						<a href="/products/detail">
-							<figure class="product-box_image">
-								<img src="<%= productos[index].imagen %>" alt="horno">
-							</figure>
-							<article class="product-box_data">
-								<h2> <%= productos[index].nombre %> </h2>
-								<p> <%= productos[index].descripcion %></p>
-								<p>Comentarios: 3</p>
-							</article>
-						</a>
-					</section>
+			<!-- /Novedades -->
+			<!-- Más comentados -->
+			<div class="container products-wrapper">
+				<div class="row">
+					<div class="col-12">
+						<h2 class="products-title">Más comentados</h2>
+					</div>
+					<!-- Show the "ultimos" products -->
+					<% for( let index=5; index < 9; index++ ) { %>
+						<div class="col-12 col-sm-6 col-lg-3">
+							<section class="product-box">
+								<a href="/products/detail">
+									<figure class="product-box_image">
+										<img src="<%= productos[index].imagen %>" alt="horno">
+									</figure>
+									<article class="product-box_data">
+										<h2>
+											<%= productos[index].nombre %>
+										</h2>
+										<p>
+											<%= productos[index].descripcion %>
+										</p>
+										<p>Comentarios: 3</p>
+									</article>
+								</a>
+							</section>
+						</div>
+						<% } %>
+
 				</div>
-			<% } %>
-	
-		</div>
-	</div>
-	<!-- /Más comentados -->
+			</div>
+			<!-- /Más comentados -->
 
 
-	<!-- footer -->
-  <%- include("partials/footer.ejs") %>
-	<!-- /footer -->
-</body>	
+			<!-- footer -->
+			<%- include("partials/footer.ejs") %>
+				<!-- /footer -->
+	</body>
+
 </html>
