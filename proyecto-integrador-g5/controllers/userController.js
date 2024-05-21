@@ -1,3 +1,5 @@
+let db = require('../models/User')
+
 const datos = require("../db/index");
 
 // profil, edit profile, register, login
