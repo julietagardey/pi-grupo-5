@@ -5,7 +5,7 @@ module.exports = function (sequelize, dataTypes) {
         id_producto: {
             autoIncrement: true,
             primaryKey: true,
-            types: dataTypes.INTEGER,
+            type: dataTypes.INTEGER,
         },
         foto_texto: {
             type: dataTypes.STRING,

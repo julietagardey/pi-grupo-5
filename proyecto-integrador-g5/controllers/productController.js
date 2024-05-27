@@ -1,6 +1,6 @@
-let db = require('../database/models/Product')
+let db = require('../database/models');
 
-const datos = require("../index")
+// const datos = require("../index")
 
 // index, add (es cuando toco el botón editar)
 

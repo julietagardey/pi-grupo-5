@@ -5,7 +5,7 @@ module.exports = function (sequelize, dataTypes) {
         id_usuario: {
             autoIncrement: true,
             primaryKey: true,
-            types: dataTypes.INTEGER,
+            type: dataTypes.INTEGER,
         },
         email: {
             type: dataTypes.STRING,

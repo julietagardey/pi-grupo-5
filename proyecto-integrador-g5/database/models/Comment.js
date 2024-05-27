@@ -5,7 +5,7 @@ module.exports = function (sequelize, dataTypes) {
         id_comentario: {
             autoIncrement: true,
             primaryKey: true,
-            types: dataTypes.INTEGER,
+            type: dataTypes.INTEGER,
         },
         id_producto: {
             type: dataTypes.INTEGER,
