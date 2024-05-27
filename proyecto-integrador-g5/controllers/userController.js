@@ -1,5 +1,5 @@
 let db = require('../database/models')
-// const datos = require("../db/index");
+const datos = require("../dbOld/index");
 
 // profil, edit profile, register, login
 const userController = {
@@ -10,7 +10,6 @@ const userController = {
         return res.render("register")
     },
     profile: function (req, res) {
-        return res.send("Profile");
         return res.render("profile", { usuario: datos.usuario, productos: datos.productos })
     },
     editProfile: function (req, res) {

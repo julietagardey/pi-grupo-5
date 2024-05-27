@@ -9,26 +9,30 @@ module.exports = function (sequelize, dataTypes) {
         },
         email: {
             type: dataTypes.STRING,
+            allowNull: false,
         },
         contrasena: {
             type: dataTypes.STRING,
+            allowNull: false,
         },
         fecha: {
             type: dataTypes.STRING,
+            allowNull: false,
         },
         dni: {
             type: dataTypes.INTEGER,
+            allowNull: false,
         },
         foto_texto: {
             type: dataTypes.STRING,
         },
-        createdAT: {
+        createdAt: {
             type: dataTypes.DATE,
         },
-        updatedAT: {
+        updatedAt: {
             type: dataTypes.DATE,
         },
-        deletedAT: {
+        deletedAt: {
             type: dataTypes.DATE,
         },
     }

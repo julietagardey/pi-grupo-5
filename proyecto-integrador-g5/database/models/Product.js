@@ -9,20 +9,23 @@ module.exports = function (sequelize, dataTypes) {
         },
         foto_texto: {
             type: dataTypes.STRING,
+            allowNull: false,
         },
         nombre: {
             type: dataTypes.STRING,
+            allowNull: false,
         },
         descripcion: {
             type: dataTypes.STRING,
+            allowNull: false,
         },
-        createdAT: {
+        createdAt: {
             type: dataTypes.DATE,
         },
-        updatedAT: {
+        updatedAt: {
             type: dataTypes.DATE,
         },
-        deletedAT: {
+        deletedAt: {
             type: dataTypes.DATE,
         },
         id_usuario: {

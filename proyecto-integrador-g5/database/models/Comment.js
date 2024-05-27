@@ -15,14 +15,15 @@ module.exports = function (sequelize, dataTypes) {
         },
         texto: {
             type: dataTypes.STRING,
+            allowNull: false,
         },
-        createdAT: {
+        createdAt: {
             type: dataTypes.DATE,
         },
-        updatedAT: {
+        updatedAt: {
             type: dataTypes.DATE,
         },
-        deletedAT: {
+        deletedAt: {
             type: dataTypes.DATE,
         },
     }
