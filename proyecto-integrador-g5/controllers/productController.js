@@ -6,7 +6,9 @@ let db = require('../database/models');
 
 let productController = {
     detail: function (req, res) {
-        db.Product.findAll()
+        let idProduct = req.params.id
+        // no está funcionando lo del id --> hay algo mal en la ruta de detail que no me toma el id 
+        db.Product.findByPk(idProduct)
             .then(function (data) {
                 return res.send(data)
             })
