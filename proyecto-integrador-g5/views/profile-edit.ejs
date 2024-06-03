@@ -18,14 +18,14 @@
 					<!-- Show the "ultimos" products -->
 					<h2 class="col-12">
 						<br>
-						<form action="/users/profile" method="get">
+						<form class='productform' action="/users/profile" method="get">
 							<div>
 								<label>Email:</label>
-								<input id="email" type="email" name="email" value="">
+								<input id="email" type="email" name="email" value="<%= locals.old && old.email ? old.email: '%>">
 							</div>
 							<div>
 								<label>Usuario:</label>
-								<input id="usuario" type="text" name="Usuario" value="">
+								<input id="usuario" type="text" name="Usuario" value="<%= locals.old && old.text ? old.text:'' %>">
 							</div>
 							<div>
 								<label>Contraseña:</label>
@@ -33,15 +33,15 @@
 							</div>
 							<div>
 								<label>Fecha de nacimiento:</label>
-								<input id="fechaDeNacimiento" type="date" name="fechaDeNacimiento" value="">
+								<input id="fechaDeNacimiento" type="date" name="fechaDeNacimiento" value="<%= locals.old && old.date ? old.date:'' %>">
 							</div>
 							<div>
 								<label>Número de documento:</label>
-								<input id="numeroDeDocumento" type="number" name="numeroDeDocumento" value="">
+								<input id="numeroDeDocumento" type="number" name="numeroDeDocumento" value="<%= locals.old && old.number ? old.number: ''%>">
 							</div>
 							<div>
 								<label>Foto de Perfil:</label>
-								<input id="fotoPerfil" type="text" name="fotoPerfil" value="">
+								<input id="fotoPerfil" type="text" name="fotoPerfil" value="<%= locals.old && old.text ? old.text:'' %>">
 							</div>
 							<div>
 								<button type="submit">Editar</button>
