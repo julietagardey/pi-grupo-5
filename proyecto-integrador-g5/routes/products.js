@@ -6,16 +6,16 @@ const controller = require('../controllers/productController')
 
 //Validaciones
 // TENEMOS QUE CAMBIAR EL FORMULARIO DE LAS VISTAS POR --> productform y asi...
-const validateProductform = [
-    body('email').isEmail().withMessage('Debes completar un email válido'),
-    body('usuario').notEmpty().withMessage('Deber completar el campo Usuario'),
-    body('fechaDeNacimiento').isDate().withMessage('Deber completar el campo Fecha de Nacimiento'),
-    body('numeroDeDocumento').isNumeric().withMessage('Deber completar el campo Numero de Documento'),
-    body('fotoPerfil').notEmpty().withMessage('Deber completar el campo Foto Perfil'),
+let validateProduct = [
+    body('image').notEmpty().withMessage('Debes completar el campo foto'),
+    body('nombre').notEmpty().withMessage('Debes completar el campo de nombre'),
+    body('descripcion').notEmpty().withMessage('Debes completar el campo descripción'),
 ]
 
 
 router.get("/detail/:id", productController.detail)
 router.get("/add", productController.add)
+//Validaciones
+router.post('/add', validateProduct, productController.add);
 
 module.exports = router;
