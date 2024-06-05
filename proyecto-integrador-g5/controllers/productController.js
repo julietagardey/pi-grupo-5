@@ -1,4 +1,4 @@
-let db = require('../database/models');
+let db = require('../database/models/Product');
 
 // const datos = require("../index")
 
@@ -8,7 +8,7 @@ let productController = {
     detail: function (req, res) {
         let idProduct = req.params.id
         // no está funcionando lo del id --> hay algo mal en la ruta de detail que no me toma el id 
-        db.Product.findByPk(idProduct)
+        db.findByPk(idProduct)
             .then(function (data) {
                 return res.send(data)
             })

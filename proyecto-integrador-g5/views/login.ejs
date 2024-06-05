@@ -13,6 +13,12 @@
 				<div class="row">
 					<div class="col-12">
 						<h2 class="products-title">Ingresar</h2>
+						<% if(locals.errors)  {
+							errors.forEach(error => { %>
+							<p class="feedback is-danger"><% error.msg %></p>
+						<%	})
+						  } 
+						%>
 					</div>
 					<!-- Show the "ultimos" products -->
 					<h2 class="col-12">
@@ -38,9 +44,9 @@
 					</h2>
 
 
-					<!-- footer -->
-					<%- include("partials/footer.ejs") %>
-						<!-- /footer -->
+						<!-- footer -->
+						<%- include("partials/footer.ejs") %>
+							<!-- /footer -->
 	</body>
 
 </html>

@@ -1,5 +1,4 @@
-let db = require('../database/models')
-const datos = require("../dbOld/index");
+const datos = require("../database/models");
 
 const indexController = {
     index: function (req, res) {

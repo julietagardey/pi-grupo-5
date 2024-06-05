@@ -1,17 +1,16 @@
 var express = require('express');
 var router = express.Router();
 var userController = require("../controllers/userController")
-let db = require('../database/models')
+let db = require('../database/models/User')
 const{body} = require('express-validator');
-const controller = require('../controllers/userController')
 
 //Validaciones
 // TENEMOS QUE CAMBIAR EL FORMULARIO DE LAS VISTAS POR --> ProfileEdit y asi...
- let validateRegister = [
+let validateRegister = [
     body('email').isEmail().withMessage("not email")
     .custom(function(value)  {
         //validar que el email exista en la base de datos
-        return dbOld.User.findOne({
+        return db.findOne({
         where: {email: value},
     })
         .then(function(user) {
@@ -32,7 +31,7 @@ let validateLogin = [
     // función para findOne del email, si se encuentra el email, hay que comparar email y conraseña se hace con pair...
     .custom(function(value)  {
         //validar que el email exista en la base de datos
-        return dbOld.User.findOne({
+        return db.findOne({
         where: {email: value},
     })
         .then(function(user) {
@@ -51,9 +50,9 @@ router.get('/register', userController.register);
 router.get('/profile', userController.profile);
 router.get('/editprofile', userController.editProfile);
 //Validaciones
-router.post('/login', userController.login);
-router.post('/register', userController.register)
-router.post('/editprofile', userController.editProfile);
+router.post('/login', validateLogin, userController.login);
+router.post('/register', validateRegister, userController.register)
+router.post('/editprofile', validateRegister, userController.editProfile);
 
 
 module.exports = router;

@@ -20,15 +20,15 @@
 						<form action="/products/detail" method="get">
 							<div>
 								<label>Img:</label>
-								<input id="image" type="text" name="image" value="">
+								<input id="image" type="text" name="image" value="<%= locals.old && old.text ? old.text:'' %>">
 							</div>
 							<div>
 								<label>Nombre:</label>
-								<input id="nombre" type="text" name="nombre" value="">
+								<input id="nombre" type="text" name="nombre" value="<%= locals.old && old.nombre ? old.nombre:'' %>">
 							</div>
 							<div>
 								<label>Descripción:</label>
-								<input id="Descripción" type="text" name="Descripción" value="">
+								<input id="Descripción" type="text" name="Descripción" value="<%= locals.old && old.text ? old.text:'' %>">
 							</div>
 							<div>
 								<button type="submit">Cargar</button>
