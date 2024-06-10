@@ -5,10 +5,13 @@ const op = db.Sequelize.Op;
 const indexController = {
     index: function (req, res) {
         db.Product.findAll({
-            include: [{association: "comentarios"}]
+            order: [
+                ["created_at", "DESC"]
+            ],
+            include: [{association: "comentarios"}, {association: "usuario"}]
         })
             .then(function (productos) {
-               // return res.send(productos)
+            //    return res.send(productos)
                 return res.render("index", {productos: productos})
             })
             .catch(function (e) {

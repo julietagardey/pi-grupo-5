@@ -5,7 +5,11 @@
 
 	<body>
 		<!-- Header -->
-		<%- include("partials/header-log.ejs") %>
+		<% if (locals.user != undefined) { %>
+			<%- include("partials/header-log.ejs") %>
+		<% } else { %>
+			<%- include('partials/header-logoff.ejs') %>
+			<% } %>
 			<!-- /Header -->
 
 			<!-- Novedades -->
@@ -17,10 +21,10 @@
 					<!-- Show the "ultimos" products -->
 					<h2 class="col-12">
 						<br>
-						<form action="/products/detail" method="get">
+						<form action="/products/add" method="post">
 							<div>
 								<label>Img:</label>
-								<input id="image" type="text" name="image" value="<%= locals.old && old.text ? old.text:'' %>">
+								<input id="foto_texto" type="text" name="foto_texto" value="<%= locals.old && old.foto_texto ? old.foto_texto:'' %>">
 							</div>
 							<div>
 								<label>Nombre:</label>
@@ -28,7 +32,7 @@
 							</div>
 							<div>
 								<label>Descripción:</label>
-								<input id="Descripción" type="text" name="Descripción" value="<%= locals.old && old.text ? old.text:'' %>">
+								<input id="Descripción" type="text" name="descripcion" value="<%= locals.old && old.descripcion ? old.descripcion:'' %>">
 							</div>
 							<div>
 								<button type="submit">Cargar</button>

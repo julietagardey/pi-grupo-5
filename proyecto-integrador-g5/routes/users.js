@@ -19,10 +19,10 @@ let validateRegister = [
             }
         })
     }),
-    body('usuario').notEmpty().withMessage('Debes completar el campo Usuario'),
-    body('fechaDeNacimiento').isDate().withMessage('Debes completar una fecha válida'),
-    body('numeroDeDocumento').isInt().withMessage('Debes completar el campo con un Documento válido'),
-    body('fotoPerfil').isString().withMessage('Debes completar el campo Foto Perfil'),
+    body('nombre').notEmpty().withMessage('Debes completar el campo Usuario'),
+    body('fecha').isDate().withMessage('Debes completar una fecha válida'),
+    body('dni').isInt().withMessage('Debes completar el campo con un Documento válido'),
+    body('foto_texto').isString().withMessage('Debes completar el campo Foto Perfil'),
 ];
 
 
@@ -40,19 +40,19 @@ let validateLogin = [
             }
         })
     }),
-    body('contrasena').notEmpty().withMessage('Debes completar el campo contraseña')
+    body('contrasenia').notEmpty().withMessage('Debes completar el campo contraseña')
 ]
 
 
 /* GET users listing. */
-router.get('/login', userController.login);
-router.get('/register', userController.register);
+router.get('/login', userController.login); // muestra formulario de login
+router.get('/register', userController.register); // muestra formulario de register
 router.get('/profile/:id', userController.profile);
-router.get('/editprofile', userController.editProfile);
+router.get('/editprofile', userController.editProfile); //muestra formular de editar perfil 
 //Validaciones
-router.post('/login', validateLogin, userController.login);
-router.post('/register', validateRegister, userController.register)
-router.post('/editprofile', validateRegister, userController.editProfile);
+router.post('/login', validateLogin, userController.storeLogin); // procesa info de form de login
+router.post('/register', validateRegister, userController.storeRegister) // procesa info de form de register
+router.post('/editprofile', validateRegister, userController.storeEditProfile); // procesa info de form de editar
 
 
 module.exports = router;

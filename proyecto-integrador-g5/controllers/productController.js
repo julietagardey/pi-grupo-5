@@ -15,7 +15,7 @@ let productController = {
             {association: "comentarios", include: [{association: "usuario"}]}]
         })
             .then(function (producto) {
-                //return res.send(producto)
+                // return res.send(producto)
                 return res.render("product", {producto: producto})
             })
             .catch(function(error) {
@@ -25,7 +25,24 @@ let productController = {
         //return res.render("product", { productos: productos })
     },
     add: function (req, res) {
+        // if (req.session.user == undefined) {
+        //     return res.redirect("/users/register")
+        // } else {
+        //     return res.render("product-add")
+        // }
         return res.render("product-add")
+        
+    },
+    store: function (req, res) {
+        
+        return res.send(req.body)
+        // db.Product.create(form)
+        // .then(function (result) {
+        //     return res.redirect("/index")
+        // })
+        // .catch(function (e) {
+        //     console.log(e);
+        // })
     }
 };
 

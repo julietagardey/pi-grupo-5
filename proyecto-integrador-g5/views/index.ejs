@@ -5,7 +5,12 @@
 
 	<body>
 		<!-- Header -->
-		<%- include("partials/header-logoff.ejs") %>
+		<% if (locals.user != undefined) { %>
+			<%- include("partials/header-log.ejs") %>
+		<% } else { %>
+			<%- include('partials/header-logoff.ejs') %>
+			<% } %>
+		
 			<!-- /Header -->
 
 			<!-- Banner -->
@@ -35,6 +40,7 @@
 										<p>
 											<%= productos[i].descripcion %>
 										</p>
+										<p>Usuario: <a href="/users/profile/<%= productos[i].usuario.id_usuario %>"><%= productos[i].usuario.email %></a>  </p>
 										<p>Comentarios: <%= productos[i].comentarios.length %></p>
 									</article>
 								</a>
@@ -65,6 +71,7 @@
 										<p>
 											<%= productos[i].descripcion %>
 										</p>
+										<p>Usuario: <%= productos[i].usuario.email %></p>
 										<p>Comentarios: <%= productos[i].comentarios.length %></p>
 									</article>
 								</a>

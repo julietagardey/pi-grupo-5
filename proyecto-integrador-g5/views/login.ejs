@@ -5,7 +5,11 @@
 
 	<body>
 		<!-- Header -->
-		<%- include("partials/header-logoff.ejs") %>
+		<% if (locals.user != undefined) { %>
+			<%- include("partials/header-log.ejs") %>
+		<% } else { %>
+			<%- include('partials/header-logoff.ejs') %>
+			<% } %>
 			<!-- /Header -->
 
 			<!-- Novedades -->
@@ -22,7 +26,7 @@
 					<!-- Show the "ultimos" products -->
 					<h2 class="col-12">
 						<br>
-						<form action="/users/profile" method="get">
+						<form action="/users/login" method="post">
 							<div>
 								<label>Email:</label>
 								<input id="email" type="email" name="email"
@@ -30,7 +34,7 @@
 							</div>
 							<div>
 								<label>Contraseña:</label>
-								<input id="contrasena" type="password" name="contrasena" value="">
+								<input id="contrasenia" type="password" name="contrasenia" value="">
 							</div>
 							<div>
 								<label>Recordarme</label>

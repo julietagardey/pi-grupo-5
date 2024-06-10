@@ -5,7 +5,11 @@
 
 	<body>
 		<!-- Header -->
-		<%- include("partials/header-logoff.ejs") %>
+		<% if (locals.user != undefined) { %>
+			<%- include("partials/header-log.ejs") %>
+		<% } else { %>
+			<%- include('partials/header-logoff.ejs') %>
+			<% } %>
 			<!-- /Header -->
 
 			<!-- product detail -->
@@ -15,7 +19,7 @@
 						<%= producto.nombre %>
 					</h2>
 					<p class="product-detail-description">
-						<a href="/products/add">Editar</a>
+						<a href="/products/add">AGREGAR</a>
 					</p>
 				</div>
 				<div class="product-detail">
@@ -25,11 +29,12 @@
 							<p class="product-detail-description">
 								<%= producto.descripcion %>
 							</p>
+							<p>Producto cargado por: <%= producto.usuario.nombre %></p>
 						</article>
 						<div class="col-12 col-lg-4">
 							<section class="comments">
 
-								<% for( let i=0; i < 3; i++ ) { %>
+								<% for( let i=0; i < producto.comentarios.length; i++ ) { %>
 									<article>
 										<img src="/images/users/fotoPerfil.jpg" alt="" class="foto-perfil">
 										<div class="data">
