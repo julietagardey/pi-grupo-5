@@ -40,14 +40,14 @@ let validateLogin = [
             }
         })
     }),
-    // body('contrasena').notEmpty().withMessage('Debes completar el campo contraseña')
+    body('contrasena').notEmpty().withMessage('Debes completar el campo contraseña')
 ]
 
 
 /* GET users listing. */
 router.get('/login', userController.login);
 router.get('/register', userController.register);
-router.get('/profile', userController.profile);
+router.get('/profile/:id', userController.profile);
 router.get('/editprofile', userController.editProfile);
 //Validaciones
 router.post('/login', validateLogin, userController.login);

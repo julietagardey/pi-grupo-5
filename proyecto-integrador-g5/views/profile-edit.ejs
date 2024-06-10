@@ -14,12 +14,11 @@
 				<div class="row">
 					<div class="col-12">
 						<h2 class="products-title">Editar mi perfil</h2>
-						<% if(locals.errors)  {
-							errors.forEach(error => { %>
-							<p class="feedback is-danger"><% error.msg %></p>
-						<%	})
-						  } 
-						%>
+						<% if(locals.errors) { errors.forEach(error=> { %>
+							<p class="feedback is-danger">
+								<% error.msg %>
+							</p>
+							<% }) } %>
 					</div>
 					<!-- Show the "ultimos" products -->
 					<h2 class="col-12">
@@ -27,11 +26,13 @@
 						<form class='productform' action="/users/profile" method="get">
 							<div>
 								<label>Email:</label>
-								<input id="email" type="email" name="email" value="<%= locals.old && old.email ? old.email: '%>">
+								<input id="email" type="email" name="email"
+									value="<%= locals.old && old.email ? old.email: '%>">
 							</div>
 							<div>
 								<label>Usuario:</label>
-								<input id="usuario" type="text" name="Usuario" value="<%= locals.old && old.usuario ? old.usuario:'' %>">
+								<input id="usuario" type="text" name="Usuario"
+									value="<%= locals.old && old.usuario ? old.usuario:'' %>">
 							</div>
 							<div>
 								<label>Contraseña:</label>
@@ -39,15 +40,18 @@
 							</div>
 							<div>
 								<label>Fecha de nacimiento:</label>
-								<input id="fechaDeNacimiento" type="date" name="fechaDeNacimiento" value="<%= locals.old && old.fechaDeNacimiento ? old.fechaDeNacimiento:'' %>">
+								<input id="fechaDeNacimiento" type="date" name="fechaDeNacimiento"
+									value="<%= locals.old && old.fechaDeNacimiento ? old.fechaDeNacimiento:'' %>">
 							</div>
 							<div>
 								<label>Número de documento:</label>
-								<input id="numeroDeDocumento" type="number" name="numeroDeDocumento" value="<%= locals.old && old.numeroDeDocumento ? old.numeroDeDocumento: ''%>">
+								<input id="numeroDeDocumento" type="number" name="numeroDeDocumento"
+									value="<%= locals.old && old.numeroDeDocumento ? old.numeroDeDocumento: ''%>">
 							</div>
 							<div>
 								<label>Foto de Perfil:</label>
-								<input id="fotoPerfil" type="text" name="fotoPerfil" value="<%= locals.old && old.fotoPerfil ? old.fotoPerfil:'' %>">
+								<input id="fotoPerfil" type="text" name="fotoPerfil"
+									value="<%= locals.old && old.fotoPerfil ? old.fotoPerfil:'' %>">
 							</div>
 							<div>
 								<button type="submit">Editar</button>

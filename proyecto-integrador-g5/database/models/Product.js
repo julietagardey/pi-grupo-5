@@ -19,13 +19,13 @@ module.exports = function (sequelize, dataTypes) {
             type: dataTypes.STRING,
             allowNull: false,
         },
-        createdAt: {
+        created_at: {
             type: dataTypes.DATE,
         },
-        updatedAt: {
+        updated_at: {
             type: dataTypes.DATE,
         },
-        deletedAt: {
+        deleted_at: {
             type: dataTypes.DATE,
         },
         id_usuario: {

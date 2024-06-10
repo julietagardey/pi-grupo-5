@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const productController = require("../controllers/productController")
-const{body} = require('express-validator');
+const { body } = require('express-validator');
 
 //Validaciones
 // TENEMOS QUE CAMBIAR EL FORMULARIO DE LAS VISTAS POR --> productform y asi...

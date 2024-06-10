@@ -7,11 +7,15 @@ module.exports = function (sequelize, dataTypes) {
             primaryKey: true,
             type: dataTypes.INTEGER,
         },
+        nombre:{
+            type: dataTypes.STRING,
+            allowNull: false
+        },
         email: {
             type: dataTypes.STRING,
             allowNull: false,
         },
-        contrasena: {
+        contrasenia: {
             type: dataTypes.STRING,
             allowNull: false,
         },
@@ -26,13 +30,13 @@ module.exports = function (sequelize, dataTypes) {
         foto_texto: {
             type: dataTypes.STRING,
         },
-        createdAt: {
+        created_at: {
             type: dataTypes.DATE,
         },
-        updatedAt: {
+        updated_at: {
             type: dataTypes.DATE,
         },
-        deletedAt: {
+        deleted_at: {
             type: dataTypes.DATE,
         },
     }

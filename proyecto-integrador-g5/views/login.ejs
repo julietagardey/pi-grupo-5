@@ -13,12 +13,11 @@
 				<div class="row">
 					<div class="col-12">
 						<h2 class="products-title">Ingresar</h2>
-						<% if(locals.errors)  {
-							errors.forEach(error => { %>
-							<p class="feedback is-danger"><% error.msg %></p>
-						<%	})
-						  } 
-						%>
+						<% if(locals.errors) { errors.forEach(error=> { %>
+							<p class="feedback is-danger">
+								<% error.msg %>
+							</p>
+							<% }) } %>
 					</div>
 					<!-- Show the "ultimos" products -->
 					<h2 class="col-12">
@@ -26,7 +25,8 @@
 						<form action="/users/profile" method="get">
 							<div>
 								<label>Email:</label>
-								<input id="email" type="email" name="email" value="<%= locals.old !== undefined && old.email ? old.email:'' %>">
+								<input id="email" type="email" name="email"
+									value="<%= locals.old !== undefined && old.email ? old.email:'' %>">
 							</div>
 							<div>
 								<label>Contraseña:</label>
@@ -42,11 +42,12 @@
 						</form>
 						<br>
 					</h2>
+				</div>
+			</div>
 
-
-						<!-- footer -->
-						<%- include("partials/footer.ejs") %>
-							<!-- /footer -->
+				<!-- footer -->
+				<%- include("partials/footer.ejs") %>
+					<!-- /footer -->
 	</body>
 
 </html>

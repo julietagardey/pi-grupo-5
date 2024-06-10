@@ -21,21 +21,21 @@
 						<h2 class="products-title">Novedades</h2>
 					</div>
 					<!-- Show the "ultimos" products -->
-					<% for( let index=0; index < 4; index++ ) { %>
+					<% for( let i=0; i < 4; i++ ) { %>
 						<div class="col-12 col-sm-6 col-lg-3">
 							<section class="product-box">
-								<a href="/products/detail">
+								<a href="/products/detail/<%= productos[i].id_producto %>">
 									<figure class="product-box_image">
-										<img src="<%= productos[index].imagen %>" alt="horno">
+										<img src="<%= productos[i].foto_texto %>" alt="horno">
 									</figure>
 									<article class="product-box_data">
 										<h2>
-											<%= productos[index].nombre %>
+											<%= productos[i].nombre %>
 										</h2>
 										<p>
-											<%= productos[index].descripcion %>
+											<%= productos[i].descripcion %>
 										</p>
-										<p>Comentarios: 3</p>
+										<p>Comentarios: <%= productos[i].comentarios.length %></p>
 									</article>
 								</a>
 							</section>
@@ -51,21 +51,21 @@
 						<h2 class="products-title">Más comentados</h2>
 					</div>
 					<!-- Show the "ultimos" products -->
-					<% for( let index=5; index < 9; index++ ) { %>
+					<% for( let i=5; i < 9; i++ ) { %>
 						<div class="col-12 col-sm-6 col-lg-3">
 							<section class="product-box">
-								<a href="/products/detail">
+								<a href="/products/detail/<%= productos[i].id_producto %>">
 									<figure class="product-box_image">
-										<img src="<%= productos[index].imagen %>" alt="horno">
+										<img src="<%= productos[i].foto_texto %>" alt="horno">
 									</figure>
 									<article class="product-box_data">
 										<h2>
-											<%= productos[index].nombre %>
+											<%= productos[i].nombre %>
 										</h2>
 										<p>
-											<%= productos[index].descripcion %>
+											<%= productos[i].descripcion %>
 										</p>
-										<p>Comentarios: 3</p>
+										<p>Comentarios: <%= productos[i].comentarios.length %></p>
 									</article>
 								</a>
 							</section>

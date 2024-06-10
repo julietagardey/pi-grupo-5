@@ -1,7 +1,8 @@
 const {validateLogin}= require('express-validator');
 const {validateResult}= require('express-validator');
-const datos = require("../database/models/index");
-const User = require('../database/models/User');
+const datos = require("../dbOld/index");
+const db = require('../database/models');
+const op = db.Sequelize.Op;
 
 // profil, edit profile, register, login
 const userController = {
@@ -12,7 +13,18 @@ const userController = {
         return res.render("register")
     },
     profile: function (req, res) {
-        return res.render("profile", { usuario: datos.usuario, productos: datos.productos })
+        let idUsuario = req.params.id
+        db.User.findByPk(idUsuario, {
+            include: [{association: "productos", include: [{association: "comentarios"}]}]
+        })
+        .then(function (usuario) {
+            //return res.send(usuario)
+            return res.render("profile", {usuario: usuario})
+        })
+        .catch(function (e) {
+            console.log(e);
+        })
+        // return res.render("profile", { usuario: datos.usuario, productos: datos.productos })
     },
     editProfile: function (req, res) {
         return res.render("profile-edit")
