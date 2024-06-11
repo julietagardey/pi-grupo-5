@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products');
 var session = require("express-session");
 
+
 var app = express();
 
 // view engine setup
@@ -21,20 +22,23 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// SESSION
 app.use(session({
-  secret: "Nuestro proyecto",
+  secret: "Proyecto integrador grupo 5",
   resave: false,
   saveUninitialized: true
 }));
 
+// Pasar datos de session a las vistas
 app.use(function (req, res, next) {
-  if (req.session !== undefined) {
+  if (req.session.usuarioLogueado !== undefined) {
     res.locals.user = req.session.usuarioLogueado
     console.log(res.locals.user);
   }
   return next();
 })
 
+// RUTAS
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/products', productsRouter);

@@ -1,8 +1,9 @@
-const {validateLogin}= require('express-validator');
-const {validateResult}= require('express-validator');
+const { validateLogin } = require('express-validator');
+const { validateRegister } = require('express-validator');
 const datos = require("../dbOld/index");
 const db = require('../database/models');
 const op = db.Sequelize.Op;
+const bcrypt = require("bcryptjs")
 
 // profil, edit profile, register, login
 const userController = {
@@ -49,16 +50,22 @@ const userController = {
         })
         .then(function (usuario) {
             // return res.send(usuario)
-            req.session.usuarioLogueado = usuario.nombre;
-            return res.redirect("/")
-            // let usuarioLogueado = req.session.usuarioLogueado;
+            let check = bcrypt.compareSync(form.contrasenia, usuario.contrasenia)
+            if (check) {
+                req.session.usuarioLogueado = usuario;
+            return res.redirect("/users/profile/"+ usuario.id_usuario)
+            }
+            
         })
         
         // ACÁ HAY QUE VALIDAR QUE EL USUARIO EXISTA EN LA BASE DE DATOS Y QUE CAMBIE EL HEADER, Y TIENEN QUE APARECER AGREGAR PRODUCTO
         
     },
     storeRegister: function (req, res) {
-        // let errors = validateResult(req);
+        // SI ERRORS ESTÁ VACÍO, HACEMOS LO QUE VENÍAMOS HACIENDO: CREAR USUARIO, GUARDARLO EN DB Y REDIRIGIR
+        // SI ERRORS NO ESTÁ VACÍO (ELSE), LO QUE QUEREMOS HACER ES VOLVER AL FORM Y MANDAR LOS ERRORES A LA VISTA
+
+        // let errors = validateRegister(req);
         // if (errors.isEmpty()) {
         //     let user = req.body;
         //     userId = User.register(user);
@@ -70,21 +77,17 @@ const userController = {
         //         old: req.body
         //     })
         // }
+       
         let form = req.body;
+        let contraEncriptada = bcrypt.hashSync(form.contrasenia, 10);
+        form.contrasenia = contraEncriptada;
+        // return res.send(form)
         db.User.create(form)
         .then(function (result) {
             return res.redirect("/users/login")
         })
         .catch(function (error) {
             console.log(error);
-        })
-
-        db.User.findOne({
-            where: [{email: form.email}]
-        })
-        .then(function (usuario) {
-            req.session.usuarioLogueado = usuario.nombre;
-            // let usuarioLogueado = req.session.usuarioLogueado;
         })
         
     },

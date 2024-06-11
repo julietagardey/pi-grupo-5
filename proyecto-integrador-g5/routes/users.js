@@ -1,18 +1,19 @@
 var express = require('express');
 var router = express.Router();
 var userController = require("../controllers/userController")
-let db = require('../database/models/User')
+let db = require('../database/models')
 const{body} = require('express-validator');
 
 //Validaciones
 // TENEMOS QUE CAMBIAR EL FORMULARIO DE LAS VISTAS POR --> ProfileEdit y asi...
 let validateRegister = [
     body('email').isEmail().withMessage("not email")
+    // CREO QUE FALTA EL SEGUNDO PARÁMETRO DE CUSTOM: { REQ }
     .custom(function(value)  {
         //validar que el email exista en la base de datos
-        return db.findOne({
+        return db.User.findOne({
         where: {email: value},
-    })
+        })
         .then(function(user) {
             if(user){
                 throw new Error ('El email ingresado ya existe')
@@ -40,7 +41,7 @@ let validateLogin = [
             }
         })
     }),
-    body('contrasenia').notEmpty().withMessage('Debes completar el campo contraseña')
+    body('contrasenia').notEmpty().isLength({ min: 4}).withMessage('Debes completar el campo contraseña y debe tener al menos 4 caracteres')
 ]
 
 
