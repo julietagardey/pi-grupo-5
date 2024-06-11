@@ -25,11 +25,13 @@
 				<div class="product-detail">
 					<div class="row">
 						<article class="col-12 col-lg-8 product-detail-info">
+			
 							<img src=" <%= producto.foto_texto %>" alt="" class="product-detail-img">
+							<p class="product-detail-description1">Producto cargado por: <%= producto.usuario.nombre %></p>
 							<p class="product-detail-description">
 								<%= producto.descripcion %>
 							</p>
-							<p>Producto cargado por: <%= producto.usuario.nombre %></p>
+							
 						</article>
 						<div class="col-12 col-lg-4">
 							<section class="comments">

@@ -11,7 +11,7 @@ const indexController = {
             include: [{association: "comentarios"}, {association: "usuario"}]
         })
             .then(function (productos) {
-            //    return res.send(productos)
+            // return res.send(productos)
                 return res.render("index", {productos: productos})
             })
             .catch(function (e) {

@@ -44,7 +44,7 @@ const userController = {
         //     })
         // }
         let form = req.body;
-        //return res.send(form)
+        // return res.send(form)
         db.User.findOne({
             where: [{email: form.email}]
         })
@@ -53,9 +53,12 @@ const userController = {
             let check = bcrypt.compareSync(form.contrasenia, usuario.contrasenia)
             if (check) {
                 req.session.usuarioLogueado = usuario;
-            return res.redirect("/users/profile/"+ usuario.id_usuario)
             }
-            
+            // acá se crea la cookie pero cuando cierro el navegador, se pierde todo me falta el AUTOLOGIN
+            if (form.recordarme == "") {
+                res.cookie("idUsuario", usuario.id_usuario, {maxAge: 10*60*5})
+            }
+            return res.redirect("/users/profile/"+ usuario.id_usuario)
         })
         
         // ACÁ HAY QUE VALIDAR QUE EL USUARIO EXISTA EN LA BASE DE DATOS Y QUE CAMBIE EL HEADER, Y TIENEN QUE APARECER AGREGAR PRODUCTO

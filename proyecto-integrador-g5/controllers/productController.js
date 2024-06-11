@@ -25,24 +25,30 @@ let productController = {
         //return res.render("product", { productos: productos })
     },
     add: function (req, res) {
-        // if (req.session.user == undefined) {
-        //     return res.redirect("/users/register")
-        // } else {
-        //     return res.render("product-add")
-        // }
-        return res.render("product-add")
+        // CONTROLES DE ACCESO
+        if (req.session.usuarioLogueado == undefined) {
+            return res.redirect("/users/register")
+        } else {
+            return res.render("product-add")
+        }
+        
         
     },
     store: function (req, res) {
         
-        return res.send(req.body)
-        // db.Product.create(form)
-        // .then(function (result) {
-        //     return res.redirect("/index")
-        // })
-        // .catch(function (e) {
-        //     console.log(e);
-        // })
+        // return res.send(req.body)
+        let form = req.body
+        form.id_usuario = req.session.usuarioLogueado.id_usuario
+        console.log(req.session.usuarioLogueado.id_usuario);
+        // form.foto_texto = "/images/products/" + req.body.foto_texto
+        // return res.send(form)
+        db.Product.create(form)
+            .then(function (result) {
+                return res.redirect("/")
+            })
+            .catch(function (e) {
+                console.log(e);
+            })
     }
 };
 

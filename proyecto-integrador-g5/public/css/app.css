@@ -311,7 +311,7 @@ hr {
 }
 
 .product-detail-img {
-  width: 70%;
+  width: 30%;
   display: block;
   margin: auto;
   height: auto;
@@ -330,7 +330,12 @@ hr {
 
 .product-detail-description {
   padding: 15px 15px 15px 40px;
-  font-size: 1.8em;
+  font-size: 1.7em;
+  line-height: 1.5;
+}
+.product-detail-description1 {
+  padding: 15px 15px 15px 40px;
+  font-size: 1.4em;
   line-height: 1.5;
 }
 
