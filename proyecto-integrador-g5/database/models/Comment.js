@@ -1,3 +1,5 @@
+const { toDefaultValue } = require("sequelize/lib/utils");
+
 module.exports = function (sequelize, dataTypes) {
     let alias = "Comment"
 
@@ -19,12 +21,17 @@ module.exports = function (sequelize, dataTypes) {
         },
         created_at: {
             type: dataTypes.DATE,
+            allowNull: false,
+            defaultValue: sequelize.literal('CURRENT_TIMESTAMN') //fecha y hora actual
         },
         updated_at: {
             type: dataTypes.DATE,
+            allowNull: false,
+            defaultValue: sequelize.literal('CURRENT_TIMESTAMN') //fecha y hora actual
         },
         deleted_at: {
             type: dataTypes.DATE,
+            allowNull: true
         },
     }
 

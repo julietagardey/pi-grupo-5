@@ -31,15 +31,20 @@ let productController = {
         } else {
             return res.render("product-add")
         }
-        
-        
     },
-    store: function (req, res) {
+    // addComment:function (req, res) {
+    //     // CONTROLES DE ACCESO
+    //     if (req.session.usuarioLogueado == undefined) {
+    //         return res.redirect("/users/register")
+    //     } else {
+    //         return res.render("comment-add")
+    //     }
+    // },
+    storeProduct: function (req, res) {
         
         // return res.send(req.body)
         let form = req.body
         form.id_usuario = req.session.usuarioLogueado.id_usuario
-        console.log(req.session.usuarioLogueado.id_usuario);
         // form.foto_texto = "/images/products/" + req.body.foto_texto
         // return res.send(form)
         db.Product.create(form)
@@ -49,7 +54,18 @@ let productController = {
             .catch(function (e) {
                 console.log(e);
             })
-    }
+    },
+    // storeComment: function(req, res) {
+    //     let form = req.body
+    //     form.id_usuario = req.session.usuarioLogueado.id_usuario
+    //     db.Comment.create(form)
+    //         .then(function(result){
+    //             return res.redirect("/products/detail")
+    //         })
+    //         .catch(function(e){
+    //             console.log(e)
+    //         })
+    // }
 };
 
 module.exports = productController;

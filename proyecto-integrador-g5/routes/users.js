@@ -3,17 +3,15 @@ var router = express.Router();
 var userController = require("../controllers/userController")
 let db = require('../database/models')
 const{body} = require('express-validator');
+const { render } = require('ejs');
 
 //Validaciones
-// TENEMOS QUE CAMBIAR EL FORMULARIO DE LAS VISTAS POR --> ProfileEdit y asi...
 let validateRegister = [
-    body('email').isEmail().withMessage("not email")
-    // CREO QUE FALTA EL SEGUNDO PARÁMETRO DE CUSTOM: { REQ }
-    .custom(function(value)  {
-        //validar que el email exista en la base de datos
+    body('email').isEmail().withMessage("Debes completar un email válido")
+    .custom(function(value){
         return db.User.findOne({
-        where: {email: value},
-        })
+        where: {email: value }
+    })
         .then(function(user) {
             if(user){
                 throw new Error ('El email ingresado ya existe')
@@ -21,6 +19,8 @@ let validateRegister = [
         })
     }),
     body('nombre').notEmpty().withMessage('Debes completar el campo Usuario'),
+    body('contrasenia').notEmpty().withMessage('Debes completar el campo contraseña')
+    .bail().isLength({ min: 4}).withMessage('la contraseña debe tener al menos 4 caracteres'),
     body('fecha').isDate().withMessage('Debes completar una fecha válida'),
     body('dni').isInt().withMessage('Debes completar el campo con un Documento válido'),
     body('foto_texto').isString().withMessage('Debes completar el campo Foto Perfil'),
@@ -32,7 +32,7 @@ let validateLogin = [
     // función para findOne del email, si se encuentra el email, hay que comparar email y conraseña se hace con pair...
     .custom(function(value)  {
         //validar que el email exista en la base de datos
-        return db.findOne({
+        return db.User.findOne({
         where: {email: value},
     })
         .then(function(user) {
@@ -42,7 +42,8 @@ let validateLogin = [
         })
     }),
     body('contrasenia').notEmpty().isLength({ min: 4}).withMessage('Debes completar el campo contraseña y debe tener al menos 4 caracteres')
-]
+];
+
 
 
 /* GET users listing. */
@@ -54,6 +55,13 @@ router.get('/editprofile', userController.editProfile); //muestra formular de ed
 router.post('/login', validateLogin, userController.storeLogin); // procesa info de form de login
 router.post('/register', validateRegister, userController.storeRegister) // procesa info de form de register
 router.post('/editprofile', validateRegister, userController.storeEditProfile); // procesa info de form de editar
+router.post('/logout', (req, res) => {
+    // Elimina la sesión del usuario
+    req.session.destroy(usuario => {
+        // Elimina la cookie de ser necesario
+        res.redirect('/'); 
+    });
+});
 
 
 module.exports = router;
