@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- Include Head -->
+<%- include("partials/head.ejs") %>
+
+	<body>
+		<!-- Header -->
+		<% if (locals.user != undefined) { %>
+			<%- include("partials/header-log.ejs") %>
+		<% } else { %>
+			<%- include('partials/header-logoff.ejs') %>
+			<% } %>
+			<!-- /Header -->
+
+			<!-- Novedades -->
+			<div class="container products-wrapper">
+				<div class="row">
+					<div class="col-12">
+						<h2 class="products-title">Editar productos</h2>
+					</div>
+					<!-- Show the "ultimos" products -->
+					<h2 class="col-12">
+						<br>
+						<form action="/products/update" method="post">
+                            <div>
+                                <input type="hidden" name="id_producto" value="<%= producto.id_producto %>">
+                              </div>
+							<div>
+								<label>Img:</label>
+								<input id="foto_texto" type="text" name="foto_texto" value="<%= producto.foto_texto %>">
+							</div>
+							<div>
+								<label>Nombre:</label>
+								<input id="nombre" type="text" name="nombre" value="<%= producto.nombre%>">
+							</div>
+							<div>
+								<label>Descripción:</label>
+								<input id="Descripción" type="text" name="descripcion" value="<%= producto.descripcion %>">
+							</div>
+                            <div>
+                                <input type="hidden" name="id_usuario" value="<%= producto.id_usuario %>">
+                              </div>
+							<div>
+								<button type="submit">Actualizar</button>
+							</div>
+						</form>
+						<br>
+					</h2>
+
+
+					<!-- footer -->
+					<%- include("partials/footer.ejs") %>
+						<!-- /footer -->
+	</body>
+
+</html>

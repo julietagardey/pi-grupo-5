@@ -10,15 +10,15 @@ let productController = {
         let idProduct = req.params.id
         // no está funcionando lo del id --> hay algo mal en la ruta de detail que no me toma el id 
         db.Product.findByPk(idProduct, {
-            include: 
-            [{association: "usuario"}, 
-            {association: "comentarios", include: [{association: "usuario"}]}]
+            include:
+                [{ association: "usuario" },
+                { association: "comentarios", include: [{ association: "usuario" }] }]
         })
             .then(function (producto) {
                 // return res.send(producto)
-                return res.render("product", {producto: producto})
+                return res.render("product", { producto: producto })
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 return console.log(error);
             })
         //var productos = db.productos
@@ -41,7 +41,7 @@ let productController = {
     //     }
     // },
     storeProduct: function (req, res) {
-        
+
         // return res.send(req.body)
         let form = req.body
         form.id_usuario = req.session.usuarioLogueado.id_usuario
@@ -65,7 +65,39 @@ let productController = {
     //         .catch(function(e){
     //             console.log(e)
     //         })
-    // }
+    // },
+    edit: function (req, res) {
+        let idProducto = req.params.id;
+        db.Product.findByPk(idProducto)
+            .then(function (producto) {
+                return res.render("updateProducto", {producto: producto})
+            })
+    },
+    updateProduct: function (req, res) {
+        let form = req.body;
+        // return res.send(form)
+        db.Product.update(form, {where: [{id_producto: form.id_producto}]})
+            .then(function (result) {
+                return res.redirect("/products/detail/" + form.id_producto)
+            })
+            .catch(function (e) {
+                console.log(e);
+            })
+    },
+    deleteProduct: function (req, res) {
+        let idProducto = req.body.id_producto;
+        let filtro = {
+            where: [{ id_producto: idProducto }]
+        }
+        db.Product.destroy(filtro)
+            .then(function (params) {
+                return res.redirect("/")
+            })
+            .catch(function (e) {
+                console.log(e);
+            })
+    }
 };
+    
 
 module.exports = productController;

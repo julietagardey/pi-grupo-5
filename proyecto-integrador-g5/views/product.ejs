@@ -21,6 +21,14 @@
 					<p class="product-detail-description">
 						<a href="/products/add">AGREGAR</a>
 					</p>
+					<p class="product-detail-description">
+						<a href="/products/editProduct/<%= producto.id_producto%>">EDITAR</a>
+					</p>
+					<form action="/products/delete" method="post">
+						<input type="hidden" name="id_producto" value="<%= producto.id_producto %>">
+       					<button type="submit">Borrar</button>
+					</form>
+
 				</div>
 				<div class="product-detail">
 					<div class="row">

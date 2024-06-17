@@ -5,51 +5,68 @@
 
 	<body>
 		<!-- Header -->
-		<% if (locals.user != undefined) { %>
+		<% if (locals.user !=undefined) { %>
 			<%- include("partials/header-log.ejs") %>
-		<% } else { %>
-			<%- include('partials/header-logoff.ejs') %>
-			<% } %>
-			<!-- /Header -->
+				<% } else { %>
+					<%- include('partials/header-logoff.ejs') %>
+						<% } %>
+							<!-- /Header -->
 
-			<!-- Novedades -->
-			<div class="container products-wrapper">
-				<div class="row">
-					<!-- <div class="col-12">
+							<!-- Novedades -->
+							<div class="container products-wrapper">
+								<div class="row">
+									<!-- <div class="col-12">
 				<h2 class="products-title">Resultados de búsqueda</h2>
 			</div> -->
-					<!-- Show the "ultimos" products -->
+									<!-- Show the "ultimos" products -->
 
-					<div class="container products-wrapper">
-						<div class="row">
-							<div class="col-12">
-								<h2 class="products-title">Resultados de búsqueda:</h2>
-							</div>
-							<!-- Show mis productos -->
-							<% for( let i=0; i < productos.length; i++ ) { %>
-								<div class="col-12 col-sm-6 col-lg-3">
-									<section class="product-box">
-										<a href="/products/detail/<%= productos[i].id_producto %>">
-											<figure class="product-box_image">
-												<img src="<%= productos[i].foto_texto %>" alt="horno">
-											</figure>
-											<article class="product-box_data">
-												<h2><%= productos[i].nombre %></h2>
-												<p><%= productos[i].descripcion %></p>
-												<p>Usuario: <a href="/users/profile/<%= productos[i].usuario.id_usuario %>"><%= productos[i].usuario.email %></a>  </p>
-												<p>Comentarios: <%= productos[i].comentarios.length %></p>
-											</article>
-										</a>
-									</section>
-								</div>
-								<% } %>
-						</div>
-					</div>
+									<div class="container products-wrapper">
+										<div class="row">
+											<div class="col-12">
+												<h2 class="products-title">Resultados de búsqueda:</h2>
+											</div>
+											<% if (productos.length==0) { %>
+												<p class="no-resultados">No hay resultados coincidentes para su criterio de búsqueda</p>
+												<% } else { %>
+													<% for( let i=0; i < productos.length; i++ ) { %>
+														<div class="col-12 col-sm-6 col-lg-3">
+															<section class="product-box">
+																<a
+																	href="/products/detail/<%= productos[i].id_producto %>">
+																	<figure class="product-box_image">
+																		<img src="<%= productos[i].foto_texto %>"
+																			alt="horno">
+																	</figure>
+																	<article class="product-box_data">
+																		<h2>
+																			<%= productos[i].nombre %>
+																		</h2>
+																		<p>
+																			<%= productos[i].descripcion %>
+																		</p>
+																		<p>Usuario: <a
+																				href="/users/profile/<%= productos[i].usuario.id_usuario %>">
+																				<%= productos[i].usuario.email %>
+																			</a> </p>
+																		<p>Comentarios: <%=
+																				productos[i].comentarios.length %>
+																		</p>
+																	</article>
+																</a>
+															</section>
+														</div>
+														<% } %>
+															<% } %>
+
+																<!-- Show mis productos -->
+
+										</div>
+									</div>
 
 
-					<!-- footer -->
-					<%- include("partials/footer.ejs") %>
-						<!-- /footer -->
+									<!-- footer -->
+									<%- include("partials/footer.ejs") %>
+										<!-- /footer -->
 	</body>
 
 </html>

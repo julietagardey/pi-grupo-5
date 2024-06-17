@@ -23,10 +23,13 @@ const indexController = {
         let busquedaProducto = req.query.search;
         // return res.send(busquedaProducto)
         db.Product.findAll({
-            where: [
+            // EL OPERADOR OR 
+            where: {
+                [op.or]: [
                 { nombre: { [op.like]: `%${busquedaProducto}%` } },
-                { descripcion: { [op.like]: `%${busquedaProducto}%` } },
-            ],
+                { descripcion: { [op.like]: `%${busquedaProducto}%` } }
+            ]
+        },
             order: [
                 ["created_at", "DESC"]
             ],

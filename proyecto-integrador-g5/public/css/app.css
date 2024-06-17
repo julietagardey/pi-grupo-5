@@ -350,6 +350,11 @@ hr {
   flex-direction: column;
 }
 
+.no-resultados {
+  font-size: 1.5em;
+  margin-left: 70px;
+}
+
 .small {
   font-size: 1.8em;
   color: var(--green);

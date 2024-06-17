@@ -15,15 +15,15 @@ const userController = {
     profile: function (req, res) {
         let idUsuario = req.params.id
         db.User.findByPk(idUsuario, {
-            include: [{association: "productos", include: [{association: "comentarios"}]}]
+            include: [{ association: "productos", include: [{ association: "comentarios" }] }],
         })
-        .then(function (usuario) {
-            //return res.send(usuario)
-            return res.render("profile", {usuario: usuario})
-        })
-        .catch(function (e) {
-            console.log(e);
-        })
+            .then(function (usuario) {
+                //return res.send(usuario)
+                return res.render("profile", { usuario: usuario })
+            })
+            .catch(function (e) {
+                console.log(e);
+            })
         // return res.render("profile", { usuario: datos.usuario, productos: datos.productos })
     },
     editProfile: function (req, res) {
@@ -38,44 +38,44 @@ const userController = {
             db.User.findOne({
                 where: { email: form.email }
             })
-            .then(function (usuario) {
-                if (!usuario) {
-                    return res.render('login', {
-                        errors: {
-                            email: {
-                                msg: 'Usuario no encontrado'
-                            }
-                        },
-                        old: req.body
-                    });
-                }
+                .then(function (usuario) {
+                    if (!usuario) {
+                        return res.render('login', {
+                            errors: {
+                                email: {
+                                    msg: 'Usuario no encontrado'
+                                }
+                            },
+                            old: req.body
+                        });
+                    }
 
-                let check = bcrypt.compareSync(form.contrasenia, usuario.contrasenia);
+                    let check = bcrypt.compareSync(form.contrasenia, usuario.contrasenia);
 
-                if (!check) {
-                    return res.render('login', {
-                        errors: {
-                            contrasenia: {
-                                msg: 'Contraseña incorrecta'
-                            }
-                        },
-                        old: req.body
-                    });
-                }
+                    if (!check) {
+                        return res.render('login', {
+                            errors: {
+                                contrasenia: {
+                                    msg: 'Contraseña incorrecta'
+                                }
+                            },
+                            old: req.body
+                        });
+                    }
 
-                req.session.usuarioLogueado = usuario;
+                    req.session.usuarioLogueado = usuario;
 
-                if (form.recordarme == "") {
-                    res.cookie("idUsuario", usuario.id_usuario, { maxAge: 10 * 60 * 5 * 1000 }); // Duración en milisegundos
-                }
+                    if (form.recordarme == "") {
+                        res.cookie("idUsuario", usuario.id_usuario, { maxAge: 10 * 60 * 5 * 1000 }); // Duración en milisegundos
+                    }
 
-                return res.redirect("/users/profile/" + usuario.id_usuario);
-            })
-            .catch(function (error) {
-                console.error("Error al buscar usuario:", error);
-                return res.status(500).send("Error interno del servidor");
-            });
-        } else{
+                    return res.redirect("/users/profile/" + usuario.id_usuario);
+                })
+                .catch(function (error) {
+                    console.error("Error al buscar usuario:", error);
+                    return res.status(500).send("Error interno del servidor");
+                });
+        } else {
             return res.render('login', {
                 errors: errors.array(),
                 old: req.body
@@ -94,12 +94,12 @@ const userController = {
             form.contrasenia = contraEncriptada;
             // return res.send(form)
             db.User.create(form)
-            .then(function (result) {
-                return res.redirect("login")
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
+                .then(function (result) {
+                    return res.redirect("login")
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
         } else {
             res.render('register', {
                 errors: errors.array(),
