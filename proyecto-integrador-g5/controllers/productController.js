@@ -1,3 +1,4 @@
+const { validationResult } = require('express-validator');
 let db = require('../database/models');
 const op = db.Sequelize.Op;
 
@@ -41,19 +42,26 @@ let productController = {
     //     }
     // },
     storeProduct: function (req, res) {
-
-        // return res.send(req.body)
-        let form = req.body
-        form.id_usuario = req.session.usuarioLogueado.id_usuario
-        // form.foto_texto = "/images/products/" + req.body.foto_texto
-        // return res.send(form)
-        db.Product.create(form)
-            .then(function (result) {
-                return res.redirect("/")
-            })
-            .catch(function (e) {
-                console.log(e);
-            })
+        let errors = validationResult(req);
+        
+        if (errors.isEmpty()) {
+            let form = req.body
+            form.id_usuario = req.session.usuarioLogueado.id_usuario
+            // form.foto_texto = "/images/products/" + req.body.foto_texto
+            // return res.send(form)
+            db.Product.create(form)
+                .then(function (result) {
+                    return res.redirect("/")
+                })
+                .catch(function (e) {
+                    console.log(e);
+                })
+        } else {
+            res.render("product-add", {
+                errors: errors.array(), 
+                old: req.body})
+        }
+  
     },
     // storeComment: function(req, res) {
     //     let form = req.body
@@ -67,37 +75,61 @@ let productController = {
     //         })
     // },
     edit: function (req, res) {
+        // CONTROLES DE ACCESO
+        // return res.send(req.session.usuarioLogueado)
         let idProducto = req.params.id;
         db.Product.findByPk(idProducto)
             .then(function (producto) {
-                return res.render("updateProducto", {producto: producto})
+                if (req.session.usuarioLogueado == undefined) {
+                    return res.redirect("/users/register")
+                } else if (req.session.usuarioLogueado.id_usuario == producto.id_usuario) {
+                    return res.render("updateProducto", { producto: producto })
+                } else {
+                    // ESTARÍA BUENO QUE APAREZCA COMO UNA VENTANITA Y DESPUÉS REDIRIGIRLO O ALGO ASÍ
+                    return res.send("Este producto no te pertenece")
+                }
+
             })
+
     },
     updateProduct: function (req, res) {
         let form = req.body;
         // return res.send(form)
-        db.Product.update(form, {where: [{id_producto: form.id_producto}]})
+        db.Product.update(form, { where: [{ id_producto: form.id_producto }] })
             .then(function (result) {
                 return res.redirect("/products/detail/" + form.id_producto)
             })
             .catch(function (e) {
                 console.log(e);
             })
+        
     },
     deleteProduct: function (req, res) {
         let idProducto = req.body.id_producto;
-        let filtro = {
-            where: [{ id_producto: idProducto }]
-        }
-        db.Product.destroy(filtro)
-            .then(function (params) {
-                return res.redirect("/")
-            })
-            .catch(function (e) {
-                console.log(e);
+        db.Product.findByPk(idProducto)
+            .then(function (producto) {
+                let Producto = producto;
+                // return res.send(Producto)
+                if (req.session.usuarioLogueado == undefined) {
+                    return res.redirect("/users/register")
+                } else if (req.session.usuarioLogueado.id_usuario != Producto.id_usuario) {
+                    // ESTARÍA BUENO QUE APAREZCA COMO UNA VENTANITA Y DESPUÉS REDIRIGIRLO O ALGO ASÍ
+                    return res.send("Este producto no te pertenece")
+                } else {
+                    let filtro = {
+                        where: [{ id_producto: idProducto }]
+                    }
+                    db.Product.destroy(filtro)
+                        .then(function (params) {
+                            return res.redirect("/")
+                        })
+                        .catch(function (e) {
+                            console.log(e);
+                        })
+                }
             })
     }
 };
-    
+
 
 module.exports = productController;

@@ -18,6 +18,13 @@
 					<div class="col-12">
 						<h2 class="products-title">Editar productos</h2>
 					</div>
+                    <% if(locals.errors){ 
+						errors.forEach(error => { %>
+							<p class="feedback is-danger">
+								<%= error.msg %>
+							</p>
+						<% }); %>
+					<% } %>
 					<!-- Show the "ultimos" products -->
 					<h2 class="col-12">
 						<br>

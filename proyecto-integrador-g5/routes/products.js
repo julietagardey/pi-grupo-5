@@ -23,7 +23,7 @@ router.get("/add", productController.add) // muestra formulario para agregar pro
 router.get("/editProduct/:id", productController.edit) // muestra formulario para editar productos
 //Validaciones
 router.post('/add', validateProduct, productController.storeProduct); // procesa info del formulario, guarda producto nuevo
-router.post("/update", productController.updateProduct) // modifica producto
+router.post("/update", validateProduct, productController.updateProduct) // modifica producto
 router.post("/delete", productController.deleteProduct) // eliminar producto
 // router.post('/addComent', validateComment, productController.storeComment); // procesa info del formulario, guarda comentario nuevo
 
