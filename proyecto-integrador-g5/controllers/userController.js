@@ -66,7 +66,7 @@ const userController = {
                     req.session.usuarioLogueado = usuario;
 
                     if (form.recordarme == "") {
-                        res.cookie("idUsuario", usuario.id_usuario, { maxAge: 10 * 60 * 5 * 1000 }); // Duración en milisegundos
+                        res.cookie("emailUsuario", usuario.email, { maxAge: 10 * 60 * 5 * 1000 }); // Duración en milisegundos
                     }
 
                     return res.redirect("/users/profile/" + usuario.id_usuario);

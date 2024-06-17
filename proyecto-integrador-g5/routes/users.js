@@ -41,7 +41,7 @@ let validateLogin = [
             }
         })
     }),
-    body('contrasenia').notEmpty().isLength({ min: 4}).withMessage('Debes completar el campo contraseña y debe tener al menos 4 caracteres')
+    body('contrasenia').notEmpty().isLength({ min: 4}).withMessage('Debes completar el campo contraseña y debe tener al menos 4 caracteres'),
 ];
 
 
@@ -57,9 +57,9 @@ router.post('/register', validateRegister, userController.storeRegister) // proc
 router.post('/editprofile', validateRegister, userController.storeEditProfile); // procesa info de form de editar
 router.post('/logout', (req, res) => {
     // Elimina la sesión del usuario
-    req.session.destroy(usuario => {
-        // Elimina la cookie de ser necesario
-        res.redirect('/'); 
+    req.session.destroy(() => {
+        res.clearCookie('emailUsuario'),
+        res.redirect('/')
     });
 });
 
