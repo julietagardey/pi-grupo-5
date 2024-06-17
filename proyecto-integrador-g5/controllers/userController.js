@@ -7,7 +7,7 @@ const bcrypt = require("bcryptjs")
 // profil, edit profile, register, login
 const userController = {
     login: function (req, res) {
-        return res.render("login")
+        return res.render("login", {errorcontrasenia: {}})
     },
     register: function (req, res) {
         return res.render("register")
@@ -31,6 +31,7 @@ const userController = {
     },
     storeLogin: function (req, res) {
         let errors = validationResult(req);
+        
 
         if (errors.isEmpty()) {
             let form = req.body;

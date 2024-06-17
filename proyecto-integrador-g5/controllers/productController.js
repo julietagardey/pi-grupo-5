@@ -9,11 +9,15 @@ const op = db.Sequelize.Op;
 let productController = {
     detail: function (req, res) {
         let idProduct = req.params.id
-        // no está funcionando lo del id --> hay algo mal en la ruta de detail que no me toma el id 
+        
         db.Product.findByPk(idProduct, {
-            include:
-                [{ association: "usuario" },
-                { association: "comentarios", include: [{ association: "usuario" }] }]
+            include:[
+            { association: "usuario" },
+            { association: "comentarios", 
+                include: [{ association: "usuario" }],
+                order: [["created_at", "DESC"]]
+            }
+        ]
         })
             .then(function (producto) {
                 // return res.send(producto)
@@ -22,8 +26,6 @@ let productController = {
             .catch(function (error) {
                 return console.log(error);
             })
-        //var productos = db.productos
-        //return res.render("product", { productos: productos })
     },
     add: function (req, res) {
         // CONTROLES DE ACCESO
@@ -33,17 +35,9 @@ let productController = {
             return res.render("product-add")
         }
     },
-    // addComment:function (req, res) {
-    //     // CONTROLES DE ACCESO
-    //     if (req.session.usuarioLogueado == undefined) {
-    //         return res.redirect("/users/register")
-    //     } else {
-    //         return res.render("comment-add")
-    //     }
-    // },
     storeProduct: function (req, res) {
         let errors = validationResult(req);
-        
+
         if (errors.isEmpty()) {
             let form = req.body
             form.id_usuario = req.session.usuarioLogueado.id_usuario
@@ -58,22 +52,44 @@ let productController = {
                 })
         } else {
             res.render("product-add", {
-                errors: errors.array(), 
-                old: req.body})
+                errors: errors.array(),
+                old: req.body
+            })
         }
-  
+
     },
-    // storeComment: function(req, res) {
-    //     let form = req.body
-    //     form.id_usuario = req.session.usuarioLogueado.id_usuario
-    //     db.Comment.create(form)
-    //         .then(function(result){
-    //             return res.redirect("/products/detail")
-    //         })
-    //         .catch(function(e){
-    //             console.log(e)
-    //         })
-    // },
+    storeComment: function (req, res) {
+        let errors = validationResult(req);
+
+        if (errors.isEmpty()) {
+            let form = req.body
+            // form.id_usuario = req.session.usuarioLogueado.id_usuario
+            // return res.send(form)
+            db.Comment.create(form)
+                .then(function (result) {
+                    return res.redirect("/")
+                })
+                .catch(function (e) {
+                    console.log(e)
+                })
+        } else {
+            // necesitamos tener la variable producto para poder renderizar bien la vista, entonces buscamos el producto con el id del form
+            let idProducto = req.body.id_producto;
+            db.Product.findByPk(idProducto, {
+                include:
+                    [{ association: "usuario" },
+                    { association: "comentarios", include: [{ association: "usuario" }] }]
+            })
+                .then(function (producto) {
+                    res.render("product", {
+                        errors: errors.array(),
+                        old: req.body,
+                        producto: producto
+                    })
+
+                })
+        }
+    },
     edit: function (req, res) {
         // CONTROLES DE ACCESO
         // return res.send(req.session.usuarioLogueado)
@@ -94,22 +110,23 @@ let productController = {
     },
     updateProduct: function (req, res) {
         let errors = validationResult(req);
-        
+
         if (errors.isEmpty()) {
             let form = req.body
             form.id_usuario = req.session.usuarioLogueado.id_usuario
 
             db.Product.update(form, { where: [{ id_producto: form.id_producto }] })
-            .then(function (result) {
-                return res.redirect("/products/detail/" + form.id_producto)
-            })
-            .catch(function (e) {
-                console.log(e);
-            })
+                .then(function (result) {
+                    return res.redirect("/products/detail/" + form.id_producto)
+                })
+                .catch(function (e) {
+                    console.log(e);
+                })
         } else {
             res.render("updateProducto", {
-                errors: errors.array(), 
-                old: req.body})
+                errors: errors.array(),
+                old: req.body
+            })
         }
 
     },

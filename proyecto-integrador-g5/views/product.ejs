@@ -5,75 +5,97 @@
 
 	<body>
 		<!-- Header -->
-		<% if (locals.user != undefined) { %>
+		<% if (locals.user !=undefined) { %>
 			<%- include("partials/header-log.ejs") %>
-		<% } else { %>
-			<%- include('partials/header-logoff.ejs') %>
-			<% } %>
-			<!-- /Header -->
+				<% } else { %>
+					<%- include('partials/header-logoff.ejs') %>
+						<% } %>
+							<!-- /Header -->
 
-			<!-- product detail -->
-			<div class="container products-wrapper">
-				<div class="d-flex align-items-center">
-					<h2 class="products-title">
-						<%= producto.nombre %>
-					</h2>
-					<p class="product-detail-description">
-						<a href="/products/add">AGREGAR</a>
-					</p>
-					<p class="product-detail-description">
-						<a href="/products/editProduct/<%= producto.id_producto%>">EDITAR</a>
-					</p>
-					<form action="/products/delete" method="post">
-						<input type="hidden" name="id_producto" value="<%= producto.id_producto %>">
-       					<button type="submit">Borrar</button>
-					</form>
+							<!-- product detail -->
+							<div class="container products-wrapper">
+								<div class="d-flex align-items-center">
+									<h2 class="products-title">
+										<%= producto.nombre %>
+									</h2>
+									<p class="product-detail-description">
+										<a href="/products/add">AGREGAR</a>
+									</p>
+									<p class="product-detail-description">
+										<a href="/products/editProduct/<%= producto.id_producto%>">EDITAR</a>
+									</p>
+									<form action="/products/delete" method="post">
+										<input type="hidden" name="id_producto" value="<%= producto.id_producto %>">
+										<button type="submit">Borrar</button>
+									</form>
 
-				</div>
-				<div class="product-detail">
-					<div class="row">
-						<article class="col-12 col-lg-8 product-detail-info">
-			
-							<img src=" <%= producto.foto_texto %>" alt="" class="product-detail-img">
-							<p class="product-detail-description1">Producto cargado por: <%= producto.usuario.nombre %></p>
-							<p class="product-detail-description">
-								<%= producto.descripcion %>
-							</p>
-							
-						</article>
-						<div class="col-12 col-lg-4">
-							<section class="comments">
+								</div>
+								<div class="product-detail">
+									<div class="row">
+										<article class="col-12 col-lg-8 product-detail-info">
 
-								<% for( let i=0; i < producto.comentarios.length; i++ ) { %>
-									<article>
-										<img src="/images/users/fotoPerfil.jpg" alt="" class="foto-perfil">
-										<div class="data">
-											<p class="user">
-												<strong> <a href="/users/profile/<%= producto.comentarios[i].usuario.id_usuario %>">
-														<%= producto.comentarios[i].usuario.email %>
-													</a> </strong>
-												<%= producto.comentarios[i].texto %>
+											<img src=" <%= producto.foto_texto %>" alt="" class="product-detail-img">
+											<p class="product-detail-description1">Producto cargado por: <%=
+													producto.usuario.nombre %>
 											</p>
+											<p class="product-detail-description">
+												<%= producto.descripcion %>
+											</p>
+
+										</article>
+										<div class="col-12 col-lg-4">
+											<section class="comments">
+
+												<% for( let i=0; i < producto.comentarios.length; i++ ) { %>
+													<article>
+														<img src="/images/users/fotoPerfil.jpg" alt=""
+															class="foto-perfil">
+														<div class="data">
+															<p class="user">
+																<strong> <a
+																		href="/users/profile/<%= producto.comentarios[i].usuario.id_usuario %>">
+																		<%= producto.comentarios[i].usuario.email %>
+																	</a> </strong>
+																<%= producto.comentarios[i].texto %>
+															</p>
+														</div>
+													</article>
+													<% } %>
+
+
+											</section>
+											<% if(locals.errors){ errors.forEach(error=> { %>
+												<p class="feedback is-danger">
+													<%= error.msg %>
+												</p>
+												<% }); %>
+													<% } %>
+													
+											<% if (locals.user !=undefined) { %>
+												<form class="form" action="/products/addComment" method="post">
+													<input type="hidden" name="id_producto"
+														value="<%= producto.id_producto %>">
+													<input type="hidden" name="id_usuario"
+														value="<%= producto.id_usuario %>">
+													<input class="form-input" type="text" name="texto" value=""
+														placeholder="Agregar comentario">
+													<button type="submit" class="buy-now-button">AGREGAR
+														COMENTARIO</button>
+												</form>
+												<% } else { %>
+													<p>Debes estar logueado para comentar</p>
+													<% } %>
+
+														<hr>
 										</div>
-									</article>
-									<% } %>
+									</div>
+								</div>
+							</div>
+							<!-- /product detail-->
 
-
-							</section>
-							<form class="form" action="" method="POST">
-						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
-						<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
-					</form> 
-							<hr>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- /product detail-->
-
-			<!-- footer -->
-			<%- include("partials/footer.ejs") %>
-				<!-- /footer -->
+							<!-- footer -->
+							<%- include("partials/footer.ejs") %>
+								<!-- /footer -->
 
 	</body>
 

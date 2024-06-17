@@ -22,12 +22,12 @@ module.exports = function (sequelize, dataTypes) {
         created_at: {
             type: dataTypes.DATE,
             allowNull: false,
-            defaultValue: sequelize.literal('CURRENT_TIMESTAMN') //fecha y hora actual
+            // defaultValue: sequelize.literal('CURRENT_TIMESTAMN') //fecha y hora actual
         },
         updated_at: {
             type: dataTypes.DATE,
             allowNull: false,
-            defaultValue: sequelize.literal('CURRENT_TIMESTAMN') //fecha y hora actual
+            // defaultValue: sequelize.literal('CURRENT_TIMESTAMN') //fecha y hora actual
         },
         deleted_at: {
             type: dataTypes.DATE,
