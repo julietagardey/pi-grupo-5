@@ -93,16 +93,25 @@ let productController = {
 
     },
     updateProduct: function (req, res) {
-        let form = req.body;
-        // return res.send(form)
-        db.Product.update(form, { where: [{ id_producto: form.id_producto }] })
+        let errors = validationResult(req);
+        
+        if (errors.isEmpty()) {
+            let form = req.body
+            form.id_usuario = req.session.usuarioLogueado.id_usuario
+
+            db.Product.update(form, { where: [{ id_producto: form.id_producto }] })
             .then(function (result) {
                 return res.redirect("/products/detail/" + form.id_producto)
             })
             .catch(function (e) {
                 console.log(e);
             })
-        
+        } else {
+            res.render("updateProducto", {
+                errors: errors.array(), 
+                old: req.body})
+        }
+
     },
     deleteProduct: function (req, res) {
         let idProducto = req.body.id_producto;

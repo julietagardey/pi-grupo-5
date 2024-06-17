@@ -39,26 +39,13 @@ const userController = {
                 where: { email: form.email }
             })
                 .then(function (usuario) {
-                    if (!usuario) {
-                        return res.render('login', {
-                            errors: {
-                                email: {
-                                    msg: 'Usuario no encontrado'
-                                }
-                            },
-                            old: req.body
-                        });
-                    }
-
                     let check = bcrypt.compareSync(form.contrasenia, usuario.contrasenia);
 
                     if (!check) {
                         return res.render('login', {
-                            errors: {
-                                contrasenia: {
-                                    msg: 'Contraseña incorrecta'
-                                }
-                            },
+                            errorcontrasenia: {
+                                    msg: 'La contraseña es incorrecta'
+                                },
                             old: req.body
                         });
                     }
@@ -76,7 +63,7 @@ const userController = {
                     return res.status(500).send("Error interno del servidor");
                 });
         } else {
-            return res.render('login', {
+            res.render('login', {
                 errors: errors.array(),
                 old: req.body
             });

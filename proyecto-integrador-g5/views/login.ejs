@@ -24,6 +24,11 @@
 								</p>
 							<% }); %>
 						<% } %>
+						<% if(errorcontrasenia){  %>
+							<p>
+								<%= errorcontrasenia.msg %> 
+							</p>
+						<% } %>
 					</div>
 					<!-- Show the "ultimos" products -->
 					<h2 class="col-12">

@@ -20,7 +20,7 @@ let validateRegister = [
     }),
     body('nombre').notEmpty().withMessage('Debes completar el campo Usuario'),
     body('contrasenia').notEmpty().withMessage('Debes completar el campo contraseña')
-    .bail().isLength({ min: 4}).withMessage('la contraseña debe tener al menos 4 caracteres'),
+    .bail().isLength({ min: 4}).withMessage('La contraseña debe tener al menos 4 caracteres'),
     body('fecha').isDate().withMessage('Debes completar una fecha válida'),
     body('dni').isInt().withMessage('Debes completar el campo con un Documento válido'),
     body('foto_texto').isString().withMessage('Debes completar el campo Foto Perfil'),
@@ -41,9 +41,9 @@ let validateLogin = [
             }
         })
     }),
-    body('contrasenia').notEmpty().isLength({ min: 4}).withMessage('Debes completar el campo contraseña y debe tener al menos 4 caracteres'),
+    body('contrasenia').notEmpty().withMessage('Debes completar el campo contraseña')
+    .bail().isLength({ min: 4}).withMessage('La contraseña debe tener al menos 4 caracteres')
 ];
-
 
 
 /* GET users listing. */
