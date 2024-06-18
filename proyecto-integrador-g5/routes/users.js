@@ -44,15 +44,6 @@ let validateLogin = [
     .bail().isLength({ min: 4}).withMessage('La contraseña debe tener al menos 4 caracteres')
 ];
 
-// let validateEditProfile = [
-//     body('email').isEmail().withMessage("Debes completar un email válido"),
-//     body('nombre').notEmpty().withMessage('Debes completar el campo Usuario'),
-//     body('contrasenia').notEmpty().withMessage('Debes completar el campo contraseña')
-//     .bail().isLength({ min: 4}).withMessage('La contraseña debe tener al menos 4 caracteres'),
-//     body('fecha').isDate().withMessage('Debes completar una fecha válida'),
-//     body('dni').isInt().withMessage('Debes completar el campo con un Documento válido'),
-//     body('foto_texto').isString().withMessage('Debes completar el campo Foto Perfil'),
-// ];
 
 let validateEdit = [
     body('email').isEmail().withMessage("Debes completar un email válido")
@@ -66,8 +57,8 @@ let validateEdit = [
             }
         })
     }),
-    body('nombre').notEmpty().withMessage('Debes completar el campo Usuario'),
-    // body('contrasenia').isLength({ min: 4}).withMessage('La contraseña debe tener al menos 4 caracteres'),
+    body('nombre').notEmpty().withMessage('Debes completar el campo Usuario')
+    .bail().isLength({ min: 4}).withMessage('La contraseña debe tener al menos 4 caracteres'),
     body('fecha').isDate().withMessage('Debes completar una fecha válida'),
     body('dni').isInt().withMessage('Debes completar el campo con un Documento válido'),
     body('foto_texto').isString().withMessage('Debes completar el campo Foto Perfil'),

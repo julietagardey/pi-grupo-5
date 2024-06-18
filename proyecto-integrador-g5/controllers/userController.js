@@ -107,6 +107,7 @@ const userController = {
             })
         }
     },
+
     storeEditProfile: function (req, res) {
         let errors = validationResult(req);
         // return res.send(errors)
@@ -114,7 +115,7 @@ const userController = {
 
         if (errors.isEmpty()) {
             let form = req.body;
-            // form.id_usuario = req.session.usuarioLogueado.id_usuario;
+            //form.id_usuario = req.session.usuarioLogueado.id_usuario;
             let idUsuario = req.session.usuarioLogueado.id_usuario;
             // return res.send(form)
             if (form.contrasenia) {
@@ -125,13 +126,13 @@ const userController = {
                 delete form.contrasenia;
             }
             console.log("Este es el form", form);
-            db.User.update(form, { where: { id_usuario: idUsuario } })
+            db.User.update(form, { where: [{ id_usuario: idUsuario }] })
                 .then(function (result) {
                     return res.redirect('/users/profile/' + idUsuario);
                 })
                 .catch(function (e) {
                     console.log(e);
-                    res.status(500).send('Error interno del servidor');
+                    // res.status(500).send('Error interno del servidor');
                 });
         } else {
             let idUsuario = req.body.id_usuario;
