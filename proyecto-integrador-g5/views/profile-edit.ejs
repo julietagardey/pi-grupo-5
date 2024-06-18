@@ -27,7 +27,10 @@
 					<!-- Show the "ultimos" products -->
 					<h2 class="col-12">
 						<br>
-						<form class='productform' action="/users/profile" method="get">
+						<form action="/users/updateProfile" method="post">
+							<div>
+                                <input type="hidden" name="id_usuario" value="<%= usuario.id_usuario %>">
+                              </div>
 							<div>
 								<label>Email:</label>
 								<input id="email" type="email" name="email"

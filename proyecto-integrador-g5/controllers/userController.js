@@ -7,7 +7,7 @@ const bcrypt = require("bcryptjs")
 // profil, edit profile, register, login
 const userController = {
     login: function (req, res) {
-        return res.render("login", {errorcontrasenia: {}})
+        return res.render("login", { errorcontrasenia: {} })
     },
     register: function (req, res) {
         return res.render("register")
@@ -27,11 +27,22 @@ const userController = {
         // return res.render("profile", { usuario: datos.usuario, productos: datos.productos })
     },
     editProfile: function (req, res) {
-        return res.render("profile-edit") 
+        let idUsuario = req.params.id;
+        db.User.findByPk(idUsuario)
+            .then(function (usuario) {
+                if (req.session.usuarioLogueado && req.session.usuarioLogueado.id_usuario == usuario.id_usuario) {
+                    // return res.send(usuario)
+                    console.log(usuario);
+                    return res.render("profile-edit", { usuario: usuario })
+                } else {
+                    // ESTARÍA BUENO QUE APAREZCA UNA VENTANITA MOSTRANDO EL MENSAJE Y DESPUÉS REDIRIGIRLO
+                    return res.send("No es tu perfil")
+                }
+            })
     },
     storeLogin: function (req, res) {
         let errors = validationResult(req);
-        
+
 
         if (errors.isEmpty()) {
             let form = req.body;
@@ -45,8 +56,8 @@ const userController = {
                     if (!check) {
                         return res.render('login', {
                             errorcontrasenia: {
-                                    msg: 'La contraseña es incorrecta'
-                                },
+                                msg: 'La contraseña es incorrecta'
+                            },
                             old: req.body
                         });
                     }
@@ -66,7 +77,7 @@ const userController = {
         } else {
             res.render('login', {
                 errors: errors.array(),
-                old: req.body, 
+                old: req.body,
                 errorcontrasenia: {}
             });
         }
@@ -97,34 +108,42 @@ const userController = {
         }
     },
     storeEditProfile: function (req, res) {
-    //     let errors = validationResult(req);
+        let errors = validationResult(req);
+        // return res.send(errors)
+        // return res.send(req.body)
 
-    //     if (errors.isEmpty()) {
-    //         let form = req.body;
-    //         let idUsuario = req.session.usuarioLogueado.id_usuario;
-
-    //         if (form.contrasenia) {
-    //             // Encriptar nueva contraseña si se cambia
-    //             form.contrasenia = bcrypt.hashSync(form.contrasenia, 10);
-    //         } else {
-    //             // Eliminar contraseña para no cambiarla
-    //             delete form.contrasenia;
-    //         }
-
-    //         db.User.update(form, { where: { id_usuario: idUsuario } })
-    //             .then(function () {
-    //                 return res.redirect('/users/profile/' + idUsuario);
-    //             })
-    //             .catch(function (e) {
-    //                 console.log(e);
-    //                 res.status(500).send('Error interno del servidor');
-    //             });
-    //     } else {
-    //         res.render('profile-edit', {
-    //             errors: errors.array(),
-    //             old: req.body
-    //         });
-    //     }
+        if (errors.isEmpty()) {
+            let form = req.body;
+            // form.id_usuario = req.session.usuarioLogueado.id_usuario;
+            let idUsuario = req.session.usuarioLogueado.id_usuario;
+            // return res.send(form)
+            if (form.contrasenia) {
+                // Encriptar nueva contraseña si se cambia
+                form.contrasenia = bcrypt.hashSync(form.contrasenia, 10);
+            } else {
+                // Eliminar contraseña para no cambiarla
+                delete form.contrasenia;
+            }
+            console.log("Este es el form", form);
+            db.User.update(form, { where: { id_usuario: idUsuario } })
+                .then(function (result) {
+                    return res.redirect('/users/profile/' + idUsuario);
+                })
+                .catch(function (e) {
+                    console.log(e);
+                    res.status(500).send('Error interno del servidor');
+                });
+        } else {
+            let idUsuario = req.body.id_usuario;
+            db.User.findByPk(idUsuario)
+                .then(function (usuario) {
+                    res.render('profile-edit', {
+                        errors: errors.array(),
+                        old: req.body,
+                        usuario: usuario // tuve que traer este objeto para que no rompa si hay errores
+                    });
+                })
+        }
     }
 };
 
