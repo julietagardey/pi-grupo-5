@@ -66,7 +66,8 @@ const userController = {
         } else {
             res.render('login', {
                 errors: errors.array(),
-                old: req.body
+                old: req.body, 
+                errorcontrasenia: {}
             });
         }
     },

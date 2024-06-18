@@ -61,9 +61,12 @@ let productController = {
         let errors = validationResult(req);
 
         if (errors.isEmpty()) {
-            let form = req.body
-            // form.id_usuario = req.session.usuarioLogueado.id_usuario
+            let form = req.body;
+            let idUsuario = req.session.usuarioLogueado.id_usuario;
+            form.id_usuario = idUsuario;
             // return res.send(form)
+            // return res.send(req.session)
+            // form.id_usuario = req.session.usuarioLogueado.id_usuario
             db.Comment.create(form)
                 .then(function (result) {
                     return res.redirect("/products/detail/" + form.id_producto)
