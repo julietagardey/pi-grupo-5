@@ -22,9 +22,12 @@
 						<div class="d-flex align-items-center ">
 							<h1 class="main-title">
 								<%= usuario.nombre%>
-									<a href="/users/editProfile">
-										<i class="fas fa-cog"></i>
-									</a>
+								<!-- ¡QUE SOLO LO VEA EL USUARIO DEL USUARIO A EDITAR! -->
+								<% if (locals.user.nombre == usuario.nombre) { %>
+										<a href="/users/editProfile">
+											<i class="fas fa-cog"></i>
+										</a>
+								<%  } %>								
 							</h1>
 							<a class="btn mt-3 ml-4" href="">SEGUIR</a>
 						</div>

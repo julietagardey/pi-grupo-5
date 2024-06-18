@@ -27,7 +27,7 @@ const userController = {
         // return res.render("profile", { usuario: datos.usuario, productos: datos.productos })
     },
     editProfile: function (req, res) {
-        return res.render("profile-edit")
+        return res.render("profile-edit") 
     },
     storeLogin: function (req, res) {
         let errors = validationResult(req);
@@ -96,7 +96,34 @@ const userController = {
         }
     },
     storeEditProfile: function (req, res) {
-        // procesar update
+    //     let errors = validationResult(req);
+
+    //     if (errors.isEmpty()) {
+    //         let form = req.body;
+    //         let idUsuario = req.session.usuarioLogueado.id_usuario;
+
+    //         if (form.contrasenia) {
+    //             // Encriptar nueva contraseña si se cambia
+    //             form.contrasenia = bcrypt.hashSync(form.contrasenia, 10);
+    //         } else {
+    //             // Eliminar contraseña para no cambiarla
+    //             delete form.contrasenia;
+    //         }
+
+    //         db.User.update(form, { where: { id_usuario: idUsuario } })
+    //             .then(function () {
+    //                 return res.redirect('/users/profile/' + idUsuario);
+    //             })
+    //             .catch(function (e) {
+    //                 console.log(e);
+    //                 res.status(500).send('Error interno del servidor');
+    //             });
+    //     } else {
+    //         res.render('profile-edit', {
+    //             errors: errors.array(),
+    //             old: req.body
+    //         });
+    //     }
     }
 };
 

@@ -20,7 +20,6 @@ let productController = {
         ]
         })
             .then(function (producto) {
-                // return res.send(producto)
                 return res.render("product", { producto: producto })
             })
             .catch(function (error) {
@@ -67,7 +66,7 @@ let productController = {
             // return res.send(form)
             db.Comment.create(form)
                 .then(function (result) {
-                    return res.redirect("/")
+                    return res.redirect("/products/detail/" + form.id_producto)
                 })
                 .catch(function (e) {
                     console.log(e)
@@ -91,9 +90,8 @@ let productController = {
         }
     },
     edit: function (req, res) {
-        // CONTROLES DE ACCESO
-        // return res.send(req.session.usuarioLogueado)
         let idProducto = req.params.id;
+       
         db.Product.findByPk(idProducto)
             .then(function (producto) {
                 if (req.session.usuarioLogueado == undefined) {
