@@ -57,8 +57,16 @@ let validateEdit = [
             }
         })
     }),
-    body('nombre').notEmpty().withMessage('Debes completar el campo Usuario')
-    .bail().isLength({ min: 4}).withMessage('La contraseña debe tener al menos 4 caracteres'),
+    body('nombre').notEmpty().withMessage('Debes completar el campo Usuario'),
+    body('contrasenia').custom(function(value, { req }){
+        if (value === undefined || value === '') {
+            return true; // la contra puede estar vacía
+        } else if (value.length >= 4){ // si hay contra, validar la longitud
+            return true;
+        } else { // si se modifica la contra, tiene que tener al menos 4 caracteres
+            throw new Error('La contraseña debe tener al menos 4 caracteres');
+        }
+    }),
     body('fecha').isDate().withMessage('Debes completar una fecha válida'),
     body('dni').isInt().withMessage('Debes completar el campo con un Documento válido'),
     body('foto_texto').isString().withMessage('Debes completar el campo Foto Perfil'),

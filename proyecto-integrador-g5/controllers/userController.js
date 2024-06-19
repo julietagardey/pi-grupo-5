@@ -112,11 +112,12 @@ const userController = {
         let errors = validationResult(req);
         // return res.send(errors)
         // return res.send(req.body)
-
+        // return res.send(req.session.usuarioLogueado)
+        let idUsuario = req.session.usuarioLogueado.id_usuario;
         if (errors.isEmpty()) {
             let form = req.body;
             //form.id_usuario = req.session.usuarioLogueado.id_usuario;
-            let idUsuario = req.session.usuarioLogueado.id_usuario;
+            
             // return res.send(form)
             if (form.contrasenia) {
                 // Encriptar nueva contraseña si se cambia
@@ -126,8 +127,10 @@ const userController = {
                 delete form.contrasenia;
             }
             console.log("Este es el form", form);
+
             db.User.update(form, { where: [{ id_usuario: idUsuario }] })
                 .then(function (result) {
+                    req.session.usuarioLogueado = form; 
                     return res.redirect('/users/profile/' + idUsuario);
                 })
                 .catch(function (e) {
@@ -135,7 +138,7 @@ const userController = {
                     // res.status(500).send('Error interno del servidor');
                 });
         } else {
-            let idUsuario = req.body.id_usuario;
+            // let idUsuario = req.body.id_usuario;
             db.User.findByPk(idUsuario)
                 .then(function (usuario) {
                     res.render('profile-edit', {

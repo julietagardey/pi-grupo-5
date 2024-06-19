@@ -20,7 +20,7 @@
 						<h2 class="products-title">Editar mi perfil</h2>
 						<% if(locals.errors) { errors.forEach(error=> { %>
 							<p class="feedback is-danger">
-								<%= errors.msg %>
+								<%= error.msg %>
 							</p>
 							<% }) } %>
 					</div>
