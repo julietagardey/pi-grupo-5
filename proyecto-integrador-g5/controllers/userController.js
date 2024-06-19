@@ -15,7 +15,11 @@ const userController = {
     profile: function (req, res) {
         let idUsuario = req.params.id
         db.User.findByPk(idUsuario, {
-            include: [{ association: "productos", include: [{ association: "comentarios" }] }],
+            include: [{
+                association: "productos",
+                include: [{ association: "comentarios" }],
+                order: [['created_at', 'DESC']] // Ordena los productos por created_at en orden descendente
+            }]
         })
             .then(function (usuario) {
                 //return res.send(usuario)

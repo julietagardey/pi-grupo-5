@@ -35,10 +35,13 @@
 							<h6 class="email">
 								<%= usuario.email %>
 							</h6>
+							<p class="product-detail-description">
+								<a href="/users/editprofile/<%= usuario.id_usuario%>">
+									<i class="fas fa-cog"></i>
+									Editar Perfil
+								</a>
+							</p>
 						</div>
-						<p class="product-detail-description">
-							<a href="/users/editprofile/<%= usuario.id_usuario%>">EDITAR</a>
-						</p>
 						<div>
 							<ul class="">
 								<li><%= usuario.productos.length %> productos</li>

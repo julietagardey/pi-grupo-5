@@ -69,7 +69,6 @@ let validateEdit = [
     }),
     body('fecha').isDate().withMessage('Debes completar una fecha válida'),
     body('dni').isInt().withMessage('Debes completar el campo con un Documento válido'),
-    body('foto_texto').isString().withMessage('Debes completar el campo Foto Perfil'),
 ];
 
 

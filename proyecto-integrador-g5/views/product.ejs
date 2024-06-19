@@ -21,14 +21,21 @@
 									<p class="product-detail-description">
 										<a href="/products/add">AGREGAR</a>
 									</p>
-									<p class="product-detail-description">
-										<a href="/products/editProduct/<%= producto.id_producto%>">EDITAR</a>
-									</p>
-									<form action="/products/delete" method="post">
-										<input type="hidden" name="id_producto" value="<%= producto.id_producto %>">
-										<button type="submit">Borrar</button>
-									</form>
-
+									<% if (locals.user) { %>
+											<%if(locals.user.id_usuario == producto.id_usuario) {%>
+												<p class="product-detail-description">
+													<a href="/products/editProduct/<%= producto.id_producto%>">EDITAR</a>
+												</p>
+												<form action="/products/delete" method="post">
+													<input type="hidden" name="id_producto" value="<%= producto.id_producto %>">
+													<button type="submit">Borrar</button>
+												</form>
+											<%} else {%>
+												<p>No podes editar o eliminar productos que no te pertenecen</p>
+											<% } %>
+										<% } else {%>
+											<p>No podes editar o eliminar productos si no estas logueado</p>
+									<% } %>
 								</div>
 								<div class="product-detail">
 									<div class="row">
@@ -70,23 +77,22 @@
 												</p>
 												<% }); %>
 													<% } %>
-													
-											<% if (locals.user !=undefined) { %>
-												<form class="form" action="/products/addComment" method="post">
-													<input type="hidden" name="id_producto"
-														value="<%= producto.id_producto %>">
-													<input type="hidden" name="id_usuario"
-														value="<%= producto.id_usuario %>">
-													<input class="form-input" type="text" name="texto" value=""
-														placeholder="Agregar comentario">
-													<button type="submit" class="buy-now-button">AGREGAR
-														COMENTARIO</button>
-												</form>
-												<% } else { %>
-													<p>Debes estar logueado para comentar</p>
-													<% } %>
 
-														<hr>
+														<% if (locals.user !=undefined) { %>
+															<form class="form" action="/products/addComment"
+																method="post">
+																<input type="hidden" name="id_producto"
+																	value="<%= producto.id_producto %>">
+																<input type="hidden" name="id_usuario"
+																	value="<%= producto.id_usuario %>">
+																<input class="form-input" type="text" name="texto"
+																	value="" placeholder="Agregar comentario">
+																<button type="submit" class="buy-now-button">AGREGAR
+																	COMENTARIO</button>
+															</form>
+															<% } else { %>
+																<p>Debes estar logueado para comentar</p>
+																<% } %>
 										</div>
 									</div>
 								</div>

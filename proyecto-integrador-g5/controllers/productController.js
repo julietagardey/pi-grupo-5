@@ -12,14 +12,12 @@ let productController = {
         
         db.Product.findByPk(idProduct, {
             include:[
-            { association: "usuario" },
+            { association: "usuario"},
             { association: "comentarios", 
-                include: [{ association: "usuario" }],
-                order: [["created_at", "DESC"]]
-            }
-        ]
-        })
+                include: [{ association: "usuario", order: [["created_at", "ASC"]]  }]
+            }]})
             .then(function (producto) {
+                console.log(producto.comentarios)
                 return res.render("product", { producto: producto })
             })
             .catch(function (error) {
