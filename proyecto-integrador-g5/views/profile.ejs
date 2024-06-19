@@ -23,11 +23,11 @@
 							<h1 class="main-title">
 								<%= usuario.nombre%>
 								<!-- ¡QUE SOLO LO VEA EL USUARIO DEL USUARIO A EDITAR! -->
-								<!-- <"% if (locals.user.nombre == usuario.nombre) { %>
-										<a href="/users/editProfile">
+								<% if (locals.user.id_usuario == usuario.id_usuario) { %>
+										<a href="/users/editProfile/<%= usuario.id_usuario %>">
 											<i class="fas fa-cog"></i>
 										</a>
-								<"%  } %>								 -->
+								<% } %>								 
 							</h1>
 							<a class="btn mt-3 ml-4" href="">SEGUIR</a>
 						</div>
@@ -35,12 +35,6 @@
 							<h6 class="email">
 								<%= usuario.email %>
 							</h6>
-							<p class="product-detail-description">
-								<a href="/users/editprofile/<%= usuario.id_usuario%>">
-									<i class="fas fa-cog"></i>
-									Editar Perfil
-								</a>
-							</p>
 						</div>
 						<div>
 							<ul class="">
