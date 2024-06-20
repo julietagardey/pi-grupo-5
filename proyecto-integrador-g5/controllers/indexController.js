@@ -26,10 +26,10 @@ const indexController = {
             // EL OPERADOR OR 
             where: {
                 [op.or]: [
-                { nombre: { [op.like]: `%${busquedaProducto}%` } },
-                { descripcion: { [op.like]: `%${busquedaProducto}%` } }
-            ]
-        },
+                    { nombre: { [op.like]: `%${busquedaProducto}%` } },
+                    { descripcion: { [op.like]: `%${busquedaProducto}%` } }
+                ]
+            },
             order: [
                 ["created_at", "DESC"]
             ],

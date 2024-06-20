@@ -6,71 +6,70 @@
 
 	<body>
 		<!-- Header -->
-		<% if (locals.user != undefined) { %>
+		<% if (locals.user !=undefined) { %>
 			<%- include("partials/header-log.ejs") %>
-		<% } else { %>
-			<%- include('partials/header-logoff.ejs') %>
-			<% } %>
-			<!-- /Header -->
-
-			<!-- Novedades -->
-			<div class="container products-wrapper">
-				<div class="row">
-					<div class="col-12">
-						<h2 class="products-title">Registrate</h2>
-						<% if(locals.errors){ 
-							errors.forEach(error => { %>
-								<p class="feedback is-danger">
-									<%= error.msg %>
-								</p>
-							<% }); %>
+				<% } else { %>
+					<%- include('partials/header-logoff.ejs') %>
 						<% } %>
-					</div>
-					<!-- Show the "ultimos" products -->
-					<h2 class="col-12">
-						<br>
-						<form action="/users/register" method="post">
-							<div>
-								<label>Email:</label>
-								<input id="email" type="email" name="email"
-									value="<%= locals.old && old.email ? old.email:'' %>">
-							</div>
-							<div>
-								<label>Usuario:</label>
-								<input id="nombre" type="text" name="nombre"
-									value="<%= locals.old && old.nombre ? old.nombre:'' %>">
-							</div>
-							<div>
-								<label>Contraseña:</label>
-								<input id="contrasenia" type="password" name="contrasenia" value="">
-							</div>
-							<div>
-								<label>Fecha de nacimiento:</label>
-								<input id="fecha" type="date" name="fecha"
-									value="<%= locals.old && old.fecha ? old.fecha:'' %>">
-							</div>
-							<div>
-								<label>Número de documento:</label>
-								<input id="dni" type="number" name="dni"
-									value="<%= locals.old && old.dni ? old.dni:'' %>">
-							</div>
-							<div>
-								<label>Foto de Perfil:</label>
-								<input id="foto_texto" type="text" name="foto_texto"
-									value="<%= locals.old && old.foto_texto ? old.foto_texto:'' %>">
-							</div>
-							<div>
-								<button type="submit">Registrar</button>
-							</div>
-						</form>
-						<br>
-					</h2>
-				</div>
-			</div>
-			<!-- footer-->
+							<!-- /Header -->
 
-			<% - include("partials/footer.ejs") %>
-				<!-- footer -->
+							<!-- Novedades -->
+							<div class="container products-wrapper">
+								<div class="row">
+									<div class="col-12">
+										<h2 class="products-title">Registrate</h2>
+										<% if(locals.errors){ errors.forEach(error=> { %>
+											<p class="feedback is-danger">
+												<%= error.msg %>
+											</p>
+											<% }); %>
+												<% } %>
+									</div>
+									<!-- Show the "ultimos" products -->
+									<h2 class="col-12">
+										<br>
+										<form action="/users/register" method="post">
+											<div>
+												<label>Email:</label>
+												<input id="email" type="email" name="email"
+													value="<%= locals.old && old.email ? old.email:'' %>">
+											</div>
+											<div>
+												<label>Usuario:</label>
+												<input id="nombre" type="text" name="nombre"
+													value="<%= locals.old && old.nombre ? old.nombre:'' %>">
+											</div>
+											<div>
+												<label>Contraseña:</label>
+												<input id="contrasenia" type="password" name="contrasenia" value="">
+											</div>
+											<div>
+												<label>Fecha de nacimiento:</label>
+												<input id="fecha" type="date" name="fecha"
+													value="<%= locals.old && old.fecha ? old.fecha:'' %>">
+											</div>
+											<div>
+												<label>Número de documento:</label>
+												<input id="dni" type="number" name="dni"
+													value="<%= locals.old && old.dni ? old.dni:'' %>">
+											</div>
+											<div>
+												<label>Foto de Perfil:</label>
+												<input id="foto_texto" type="text" name="foto_texto"
+													value="<%= locals.old && old.foto_texto ? old.foto_texto:'' %>">
+											</div>
+											<div>
+												<button type="submit">Registrar</button>
+											</div>
+										</form>
+										<br>
+									</h2>
+								</div>
+							</div>
+							<!-- footer-->
+
+							<% - include("partials/footer.ejs") %>
+								<!-- footer -->
 
 
 	</body>

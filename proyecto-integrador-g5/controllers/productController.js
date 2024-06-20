@@ -9,15 +9,18 @@ const op = db.Sequelize.Op;
 let productController = {
     detail: function (req, res) {
         let idProduct = req.params.id
-        
+
         db.Product.findByPk(idProduct, {
-            include:[
-            { association: "usuario"},
-            { association: "comentarios", 
-                separate: true,
-                order: [["created_at", "DESC"]],
-                include: [{ association: "usuario"}]}
-            ]})
+            include: [
+                { association: "usuario" },
+                {
+                    association: "comentarios",
+                    separate: true,
+                    order: [["created_at", "DESC"]],
+                    include: [{ association: "usuario" }]
+                }
+            ]
+        })
             .then(function (producto) {
                 console.log(producto.comentarios)
                 // return res.send(producto.comentarios)
@@ -95,7 +98,7 @@ let productController = {
     },
     edit: function (req, res) {
         let idProducto = req.params.id;
-       
+
         db.Product.findByPk(idProducto)
             .then(function (producto) {
                 if (req.session.usuarioLogueado == undefined) {

@@ -13,7 +13,7 @@ let validateProduct = [
 
 let validateComment = [
     body('texto').notEmpty().withMessage('Debes completar el campo texto')
-    .bail().isLength({min: 3}).withMessage("El comentario tiene que tener un mínimo de 3 caracteres")
+        .bail().isLength({ min: 3 }).withMessage("El comentario tiene que tener un mínimo de 3 caracteres")
 ]
 
 
@@ -24,6 +24,6 @@ router.get("/editProduct/:id", productController.edit) // muestra formulario par
 router.post('/add', validateProduct, productController.storeProduct); // procesa info del formulario, guarda producto nuevo
 router.post("/update", validateProduct, productController.updateProduct) // modifica producto
 router.post("/delete", productController.deleteProduct) // eliminar producto
-router.post('/addComment', validateComment,productController.storeComment); // procesa info del formulario, guarda comentario nuevo
+router.post('/addComment', validateComment, productController.storeComment); // procesa info del formulario, guarda comentario nuevo
 
 module.exports = router;

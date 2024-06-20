@@ -5,60 +5,59 @@
 
 	<body>
 		<!-- Header -->
-		<% if (locals.user != undefined) { %>
+		<% if (locals.user !=undefined) { %>
 			<%- include("partials/header-log.ejs") %>
-		<% } else { %>
-			<%- include('partials/header-logoff.ejs') %>
-			<% } %>
-			<!-- /Header -->
-
-			<!-- Novedades -->
-			<div class="container products-wrapper">
-				<div class="row">
-					<div class="col-12">
-						<h2 class="products-title">Ingresar</h2>
-						<% if(locals.errors){ 
-							errors.forEach(error => { %>
-								<p class="feedback is-danger">
-									<%= error.msg %>
-								</p>
-							<% }); %>
+				<% } else { %>
+					<%- include('partials/header-logoff.ejs') %>
 						<% } %>
-						<% if(errorcontrasenia){  %>
-							<p>
-								<%= errorcontrasenia.msg %> 
-							</p>
-						<% } %>
-					</div>
-					<!-- Show the "ultimos" products -->
-					<h2 class="col-12">
-						<br>
-						<form action="/users/login" method="post">
-							<div>
-								<label>Email:</label>
-								<input id="email" type="email" name="email"
-									value="<%= locals.old !== undefined && old.email ? old.email:'' %>">
-							</div>
-							<div>
-								<label>Contraseña:</label>
-								<input id="contrasenia" type="password" name="contrasenia" value="">
-							</div>
-							<div>
-								<label>Recordarme</label>
-								<input id="recordarme" type="checkbox" name="recordarme" value="">
-							</div>
-							<div>
-								<button type="submit">LogIn</button>
-							</div>
-						</form>
-						<br>
-					</h2>
-				</div>
-			</div>
+							<!-- /Header -->
 
-				<!-- footer -->
-				<%- include("partials/footer.ejs") %>
-					<!-- /footer -->
+							<!-- Novedades -->
+							<div class="container products-wrapper">
+								<div class="row">
+									<div class="col-12">
+										<h2 class="products-title">Ingresar</h2>
+										<% if(locals.errors){ errors.forEach(error=> { %>
+											<p class="feedback is-danger">
+												<%= error.msg %>
+											</p>
+											<% }); %>
+												<% } %>
+													<% if(errorcontrasenia){ %>
+														<p>
+															<%= errorcontrasenia.msg %>
+														</p>
+														<% } %>
+									</div>
+									<!-- Show the "ultimos" products -->
+									<h2 class="col-12">
+										<br>
+										<form action="/users/login" method="post">
+											<div>
+												<label>Email:</label>
+												<input id="email" type="email" name="email"
+													value="<%= locals.old !== undefined && old.email ? old.email:'' %>">
+											</div>
+											<div>
+												<label>Contraseña:</label>
+												<input id="contrasenia" type="password" name="contrasenia" value="">
+											</div>
+											<div>
+												<label>Recordarme</label>
+												<input id="recordarme" type="checkbox" name="recordarme" value="">
+											</div>
+											<div>
+												<button type="submit">LogIn</button>
+											</div>
+										</form>
+										<br>
+									</h2>
+								</div>
+							</div>
+
+							<!-- footer -->
+							<%- include("partials/footer.ejs") %>
+								<!-- /footer -->
 	</body>
 
 </html>

@@ -6,66 +6,66 @@
 
 	<body>
 		<!-- Header -->
-		<% if (locals.user != undefined) { %>
+		<% if (locals.user !=undefined) { %>
 			<%- include("partials/header-log.ejs") %>
-		<% } else { %>
-			<%- include('partials/header-logoff.ejs') %>
-		<% } %>
-			<!-- /Header -->
+				<% } else { %>
+					<%- include('partials/header-logoff.ejs') %>
+						<% } %>
+							<!-- /Header -->
 
-			<!-- Novedades -->
-			<div class="container products-wrapper">
-				<div class="row">
-					<div class="col-12">
-						<h2 class="products-title">Editar mi perfil</h2>
-						<% if(locals.errors) { errors.forEach(error=> { %>
-							<p class="feedback is-danger">
-								<%= error.msg %>
-							</p>
-							<% }) } %>
-					</div>
-					<!-- Show the "ultimos" products -->
-					<h2 class="col-12">
-						<br>
-						<form action="/users/updateProfile" method="post">
-							<div>
-                                <input type="hidden" name="id_usuario" value="<%= usuario.id_usuario %>">
-                              </div>
-							<div>
-								<label>Email:</label>
-								<input id="email" type="email" name="email"
-									value="<%= usuario.email %>">
-							</div>
-							<div>
-								<label>Usuario:</label>
-								<input id="nombre" type="text" name="nombre"
-									value="<%= usuario.nombre  %>">
-							</div>
-							<div>
-								<label>Contraseña:</label>
-								<input id="contrasenia" type="password" name="contrasenia" value="">
-							</div>
-							<div>
-								<label>Fecha de nacimiento:</label>
-								<input id="fecha" type="date" name="fecha"
-									value="<%= usuario.fecha  %>">
-							</div>
-							<div>
-								<label>Número de documento:</label>
-								<input id="dni" type="number" name="dni"
-									value="<%= usuario.dni %>">
-							</div>
-							<div>
-								<button type="submit">Editar</button>
-							</div>
-						</form>
-						<br>
-					</h2>
+							<!-- Novedades -->
+							<div class="container products-wrapper">
+								<div class="row">
+									<div class="col-12">
+										<h2 class="products-title">Editar mi perfil</h2>
+										<% if(locals.errors) { errors.forEach(error=> { %>
+											<p class="feedback is-danger">
+												<%= error.msg %>
+											</p>
+											<% }) } %>
+									</div>
+									<!-- Show the "ultimos" products -->
+									<h2 class="col-12">
+										<br>
+										<form action="/users/updateProfile" method="post">
+											<div>
+												<input type="hidden" name="id_usuario"
+													value="<%= usuario.id_usuario %>">
+											</div>
+											<div>
+												<label>Email:</label>
+												<input id="email" type="email" name="email"
+													value="<%= usuario.email %>">
+											</div>
+											<div>
+												<label>Usuario:</label>
+												<input id="nombre" type="text" name="nombre"
+													value="<%= usuario.nombre  %>">
+											</div>
+											<div>
+												<label>Contraseña:</label>
+												<input id="contrasenia" type="password" name="contrasenia" value="">
+											</div>
+											<div>
+												<label>Fecha de nacimiento:</label>
+												<input id="fecha" type="date" name="fecha"
+													value="<%= usuario.fecha  %>">
+											</div>
+											<div>
+												<label>Número de documento:</label>
+												<input id="dni" type="number" name="dni" value="<%= usuario.dni %>">
+											</div>
+											<div>
+												<button type="submit">Editar</button>
+											</div>
+										</form>
+										<br>
+									</h2>
 
 
-					<!-- footer -->
-					<%- include("partials/footer.ejs") %>
-						<!-- /footer -->
+									<!-- footer -->
+									<%- include("partials/footer.ejs") %>
+										<!-- /footer -->
 	</body>
 
 </html>

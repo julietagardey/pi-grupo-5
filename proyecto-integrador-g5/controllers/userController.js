@@ -122,7 +122,7 @@ const userController = {
         if (errors.isEmpty()) {
             let form = req.body;
             //form.id_usuario = req.session.usuarioLogueado.id_usuario;
-            
+
             // return res.send(form)
             if (form.contrasenia) {
                 // Encriptar nueva contraseña si se cambia
@@ -135,7 +135,7 @@ const userController = {
 
             db.User.update(form, { where: [{ id_usuario: idUsuario }] })
                 .then(function (result) {
-                    req.session.usuarioLogueado = form; 
+                    req.session.usuarioLogueado = form;
                     return res.redirect('/users/profile/' + idUsuario);
                 })
                 .catch(function (e) {
