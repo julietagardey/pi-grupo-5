@@ -14,10 +14,13 @@ let productController = {
             include:[
             { association: "usuario"},
             { association: "comentarios", 
-                include: [{ association: "usuario", order: [["created_at", "ASC"]]  }]
-            }]})
+                separate: true,
+                order: [["created_at", "DESC"]],
+                include: [{ association: "usuario"}]}
+            ]})
             .then(function (producto) {
                 console.log(producto.comentarios)
+                // return res.send(producto.comentarios)
                 return res.render("product", { producto: producto })
             })
             .catch(function (error) {

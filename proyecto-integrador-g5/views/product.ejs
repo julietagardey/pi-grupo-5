@@ -52,8 +52,8 @@
 										</article>
 										<div class="col-12 col-lg-4">
 											<section class="comments">
-
-												<% for( let i=0; i < producto.comentarios.length; i++ ) { %>
+												<% if (producto.comentarios != undefined) { %>
+												 <% for( let i=0; i < producto.comentarios.length; i++ ) { %>
 													<article>
 														<img src="/images/users/fotoPerfil.jpg" alt=""
 															class="foto-perfil">
@@ -68,6 +68,9 @@
 														</div>
 													</article>
 													<% } %>
+												<% } %>
+
+												
 
 
 											</section>

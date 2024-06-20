@@ -18,6 +18,7 @@ const userController = {
             include: [{
                 association: "productos",
                 include: [{ association: "comentarios" }],
+                separate: true,
                 order: [['created_at', 'DESC']] // Ordena los productos por created_at en orden descendente
             }]
         })

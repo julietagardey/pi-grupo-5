@@ -23,11 +23,14 @@
 							<h1 class="main-title">
 								<%= usuario.nombre%>
 								<!-- ¡QUE SOLO LO VEA EL USUARIO DEL USUARIO A EDITAR! -->
-								<% if (locals.user.id_usuario == usuario.id_usuario) { %>
+								<% if (locals.user) { %>
+								 <% if (locals.user.id_usuario == usuario.id_usuario) { %>
 										<a href="/users/editProfile/<%= usuario.id_usuario %>">
 											<i class="fas fa-cog"></i>
 										</a>
-								<% } %>								 
+								<% } %>	
+								<% } %>
+															 
 							</h1>
 							<a class="btn mt-3 ml-4" href="">SEGUIR</a>
 						</div>
