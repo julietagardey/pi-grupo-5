@@ -81,13 +81,7 @@ router.get('/editprofile/:id', userController.editProfile); //muestra formular d
 router.post('/login', validateLogin, userController.storeLogin); // procesa info de form de login
 router.post('/register', validateRegister, userController.storeRegister) // procesa info de form de register
 router.post('/updateProfile', validateEdit, userController.storeEditProfile); // procesa info de form de editar
-router.post('/logout', (req, res) => {
-    // Elimina la sesión del usuario
-    req.session.destroy(() => {
-        res.clearCookie('emailUsuario'),
-            res.redirect('/')
-    });
-});
+router.post('/logout', userController.logoutUsuario);
 
 
 module.exports = router;

@@ -153,6 +153,13 @@ const userController = {
                     });
                 })
         }
+    },
+    logoutUsuario: function (req, res){
+        // Elimina la sesión del usuario
+        req.session.destroy(() => {
+            res.clearCookie('emailUsuario'),
+                res.redirect('/')
+        });
     }
 };
 
